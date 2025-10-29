@@ -14,10 +14,12 @@ const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
     { path: '/student', label: 'Student' },
     { path: '/donor', label: 'Donor' },
     { path: '/feed', label: 'Feed' },
+    { path: '/apply', label: 'Apply' },
+    { path: '/donate', label: 'Donate' },
+    { path: '/impact', label: 'Impact' },
     { path: '/leaderboard', label: 'Leaderboard' },
+    { path: '/nft-claim', label: 'NFT Claim' },
     { path: '/analytics', label: 'Analytics' },
-    { path: '/ai-demo', label: 'AI Demo' },
-    { path: '/verification-demo', label: 'Verification' },
   ]
 
   return (
@@ -51,3 +53,4 @@ const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
 }
 
 export default Sidebar
+

@@ -170,6 +170,27 @@ const AIAssistant: React.FC<AIAssistantProps> = ({ type = 'general', autoDetectU
   const generateAIResponse = (userInput: string, context: string): string => {
     const lowerInput = userInput.toLowerCase()
     
+    // Handle casual/offensive input
+    const casualWords = ['ur mom', 'wtf', 'lol', 'lmfao', 'bruh', 'smh', 'fml']
+    if (casualWords.some(word => lowerInput.includes(word))) {
+      return "Haha, let's get back to your scholarship goals. What would you like help with?"
+    }
+
+    // Handle vague help requests
+    if (lowerInput.includes('need help') || lowerInput.includes('how to start') || lowerInput === 'help') {
+      return "No problem! What would you like help with?\n\n1️⃣ **Apply for a scholarship** (students)\n2️⃣ **Donate to a student** (donors)\n3️⃣ **Verify your profile** (students)\n4️⃣ **Claim NFT rewards** (donors)\n\nJust tell me what you want to do!"
+    }
+
+    // Handle "what is fundmeup"
+    if (lowerInput.includes('what is fundmeup') || lowerInput.includes('what is this')) {
+      return "FundMeUp is an AI-powered Web3 scholarship platform where donors support students with transparent, milestone-based funding. Think Kickstarter for education with blockchain verification and NFT rewards for donors. What brings you here?"
+    }
+
+    // Handle NFT queries
+    if (lowerInput.includes('get nft') || lowerInput.includes('claim nft') || lowerInput.includes('mint badge') || lowerInput.includes('nft')) {
+      return "Here's how to claim your NFT badges:\n\n🎁 **What You Get:** Unique NFT for every donation ≥₹500\n✨ **Features:** Student name, donation amount, milestone funded, blockchain timestamp\n📁 **How to Claim:** Visit /nft-claim, select a badge, click Claim\n🔒 **Forever:** Your NFTs are on-chain proof of impact!\n\nWant to see available badges? I can guide you to the claim page!"
+    }
+    
     // Student context responses
     if (context === 'student' || context === 'general') {
       if (lowerInput.includes('bio') || lowerInput.includes('profile')) {
@@ -227,15 +248,13 @@ const AIAssistant: React.FC<AIAssistantProps> = ({ type = 'general', autoDetectU
       }
     }
 
-    // General responses
-    if (lowerInput.includes('hello') || lowerInput.includes('hi')) {
-      return "Hello! I'm here to help. What can I assist you with today?"
-    }
-    if (lowerInput.includes('help')) {
-      return "I can help with many things:\n• Answering questions about FundMeUp\n• Guiding you through the platform\n• Analyzing data and trends\n• Providing personalized recommendations\n\nWhat would you like to know?"
+    // General greetings
+    if (lowerInput.includes('hello') || lowerInput.includes('hi') || lowerInput.includes('hey')) {
+      return "Hey! I'm FundMeUp's assistant. Are you looking to apply for a scholarship or support a student?"
     }
 
-    return "Thanks for your message! I'm processing your request. Can you provide more details or rephrase your question?"
+    // Fallback for unclear input
+    return "I'm not sure I understood that. Are you looking to apply for a scholarship or support one? Just tell me what you need help with!"
   }
 
   const quickActions = {

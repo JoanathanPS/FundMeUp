@@ -15,15 +15,18 @@ const Navbar = ({ onMenuClick }: NavbarProps) => {
     return location.pathname === path || location.pathname.startsWith(path + '/')
   }
 
-  const navItems = [
+  const mainNavItems = [
     { path: '/', label: 'Home' },
     { path: '/student', label: 'Student' },
     { path: '/donor', label: 'Donor' },
     { path: '/feed', label: 'Feed' },
+  ]
+
+  const moreNavItems = [
+    { path: '/apply', label: 'Apply' },
+    { path: '/donate', label: 'Donate' },
+    { path: '/impact', label: 'Impact' },
     { path: '/leaderboard', label: 'Leaderboard' },
-    { path: '/analytics', label: 'Analytics' },
-    { path: '/ai-demo', label: 'AI Demo' },
-    { path: '/verification-demo', label: 'Verification' },
   ]
 
   return (
@@ -46,12 +49,12 @@ const Navbar = ({ onMenuClick }: NavbarProps) => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => (
+          <div className="hidden lg:flex items-center space-x-6">
+            {mainNavItems.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
-                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors whitespace-nowrap ${
                   isActive(item.path)
                     ? 'text-orange-600 bg-orange-50 dark:bg-orange-900/20 dark:text-orange-400'
                     : 'text-gray-600 dark:text-gray-300 hover:text-orange-600 hover:bg-orange-50 dark:hover:bg-orange-900/20'
@@ -60,6 +63,7 @@ const Navbar = ({ onMenuClick }: NavbarProps) => {
                 {item.label}
               </Link>
             ))}
+            {/* More dropdown - handled by mobile menu on smaller screens */}
           </div>
 
           {/* Wallet Connect & Mobile menu */}
