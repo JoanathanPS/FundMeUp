@@ -8,6 +8,9 @@ import SubmitProof from './pages/SubmitProof'
 import DonorDashboard from './pages/DonorDashboard'
 import ImpactFeed from './pages/ImpactFeed'
 import Leaderboard from './pages/Leaderboard'
+import Analytics from './pages/Analytics'
+import AIDemo from './pages/AIDemo'
+import VerificationDemo from './pages/VerificationDemo'
 
 // Components
 import Navbar from './components/Navbar'
@@ -42,6 +45,9 @@ function App() {
             <Route path="/donor" element={<DonorDashboard />} />
             <Route path="/feed" element={<ImpactFeed />} />
             <Route path="/leaderboard" element={<Leaderboard />} />
+            <Route path="/analytics" element={<Analytics />} />
+            <Route path="/ai-demo" element={<AIDemo />} />
+            <Route path="/verification-demo" element={<VerificationDemo />} />
           </Routes>
         </motion.div>
       </main>

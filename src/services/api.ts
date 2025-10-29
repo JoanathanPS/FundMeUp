@@ -93,6 +93,9 @@ export const leaderboardAPI = {
   getDonors: () => api.get('/leaderboard/donors'),
   getStudents: () => api.get('/leaderboard/students'),
   getStats: () => api.get('/leaderboard/stats'),
+  getHeatmap: () => api.get('/analytics/heatmap'),
+  getTrends: (period: string) => api.get(`/analytics/trends?period=${period}`),
+  getLeaderboard: (type: string) => api.get(`/analytics/leaderboard?type=${type}`),
 }
 
 // AI API
@@ -101,6 +104,19 @@ export const aiAPI = {
   ocrRisk: (data: any) => api.post('/ai/ocr-risk', data),
   generateMessage: (data: any) => api.post('/ai/generate-message', data),
   match: (data: any) => api.post('/ai/match', data),
+  // Enhanced AI V2 endpoints
+  analyzeProof: (data: any) => api.post('/ai/v2/analyze-proof', data),
+  verifyEligibility: (data: any) => api.post('/ai/v2/verify-eligibility', data),
+  generateEncouragement: (data: any) => api.post('/ai/v2/generate-encouragement', data),
+  verifyRegional: (data: any) => api.post('/ai/v2/verify-regional', data),
+}
+
+// Email Verification API
+export const emailVerificationAPI = {
+  requestEmail: (data: any) => api.post('/verification/v3/request-email', data),
+  verifyEmail: (data: any) => api.post('/verification/v3/verify-email', data),
+  getStatus: (verificationId: string) => api.get(`/verification/v3/status/${verificationId}`),
+  complete: (data: any) => api.post('/verification/v3/complete', data),
 }
 
 // Institution Verification API

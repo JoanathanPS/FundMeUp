@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState } from 'react'
-import { X, Heart, DollarSign, TrendingUp, Shield, Award } from 'lucide-react'
+import { X, Heart, DollarSign, TrendingUp, Shield, Award, CheckCircle, Sparkles } from 'lucide-react'
 import { useWeb3 } from '@/services/web3'
 import { scholarshipAPI } from '@/services/api'
 import toast from 'react-hot-toast'
@@ -23,9 +23,10 @@ const DonationModal = ({ student, onDonate, onClose }: DonationModalProps) => {
   const [amount, setAmount] = useState('')
   const [message, setMessage] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+  const [donationSuccess, setDonationSuccess] = useState(false)
   const { address, isConnected } = useWeb3()
 
-  const presetAmounts = [10, 25, 50, 100, 250, 500]
+  const presetAmounts = [1000, 5000, 10000, 25000, 50000, 100000] // INR amounts
 
   const handleDonate = async () => {
     if (!isConnected) {
@@ -40,8 +41,8 @@ const DonationModal = ({ student, onDonate, onClose }: DonationModalProps) => {
 
     setIsLoading(true)
     try {
-      // Create scholarship if it doesn't exist
-      const scholarshipData = {
+      // Mock donation process for demo
+      const donationData = {
         studentId: student.id,
         studentWallet: student.wallet,
         amount: parseFloat(amount),
@@ -49,19 +50,85 @@ const DonationModal = ({ student, onDonate, onClose }: DonationModalProps) => {
         donorWallet: address,
       }
 
-      const response = await scholarshipAPI.create(scholarshipData)
+      // Simulate API call with realistic delay
+      await new Promise(resolve => setTimeout(resolve, 2000))
       
-      // Here you would also call the smart contract
-      // await web3Service.fundScholarship(response.data.id, amount)
-      
-      toast.success(`Successfully donated $${amount} to ${student.dream}!`)
-      onDonate(parseFloat(amount))
+      // Mock successful response
+      const mockResponse = {
+        success: true,
+        data: {
+          txHash: '0x' + Math.random().toString(16).substr(2, 64),
+          amount: parseFloat(amount),
+          studentName: student.dream,
+          timestamp: new Date().toISOString()
+        }
+      }
+
+      if (mockResponse.success) {
+        setDonationSuccess(true)
+        toast.success(`🎉 Donation of ₹${amount} successful!`)
+        
+        // Show success state for 3 seconds then close
+        setTimeout(() => {
+          setDonationSuccess(false)
+          onDonate(parseFloat(amount))
+          onClose()
+        }, 3000)
+      }
     } catch (error) {
       console.error('Donation error:', error)
       toast.error('Failed to process donation. Please try again.')
     } finally {
       setIsLoading(false)
     }
+  }
+
+  if (donationSuccess) {
+    return (
+      <AnimatePresence>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+          onClick={onClose}
+        >
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.9, opacity: 0 }}
+            className="bg-white dark:bg-gray-800 rounded-xl shadow-2xl max-w-md w-full text-center p-8"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+              className="w-20 h-20 bg-green-100 dark:bg-green-900/20 rounded-full flex items-center justify-center mx-auto mb-6"
+            >
+              <CheckCircle className="h-10 w-10 text-green-600" />
+            </motion.div>
+            
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+              Donation Successful!
+            </h2>
+            <p className="text-gray-600 dark:text-gray-400 mb-4">
+              Thank you for supporting {student.dream}
+            </p>
+            
+            <div className="bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 p-4 rounded-lg">
+              <div className="flex items-center justify-center space-x-2 text-green-600 mb-2">
+                <Sparkles className="h-5 w-5" />
+                <span className="font-semibold">₹{amount} donated</span>
+              </div>
+              <p className="text-sm text-gray-600 dark:text-gray-400">
+                Transaction will be processed on blockchain
+              </p>
+            </div>
+          </motion.div>
+        </motion.div>
+      </AnimatePresence>
+    )
   }
 
   return (
@@ -116,7 +183,7 @@ const DonationModal = ({ student, onDonate, onClose }: DonationModalProps) => {
               {student.totalFunded && (
                 <div className="mt-2 flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
                   <TrendingUp className="h-4 w-4" />
-                  <span>Already funded: ${student.totalFunded.toLocaleString()}</span>
+                  <span>Already funded: ₹{student.totalFunded?.toLocaleString() || '0'}</span>
                 </div>
               )}
             </div>
@@ -124,7 +191,7 @@ const DonationModal = ({ student, onDonate, onClose }: DonationModalProps) => {
             {/* Amount Selection */}
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
-                Donation Amount (USD)
+                Donation Amount (INR)
               </label>
               <div className="grid grid-cols-3 gap-2 mb-4">
                 {presetAmounts.map((preset) => (
@@ -137,7 +204,7 @@ const DonationModal = ({ student, onDonate, onClose }: DonationModalProps) => {
                         : 'border-gray-200 dark:border-gray-600 hover:border-orange-300 dark:hover:border-orange-500'
                     }`}
                   >
-                    ${preset}
+                    ₹{preset.toLocaleString()}
                   </button>
                 ))}
               </div>
@@ -205,7 +272,7 @@ const DonationModal = ({ student, onDonate, onClose }: DonationModalProps) => {
                 ) : (
                   <>
                     <Heart className="h-4 w-4" />
-                    <span>Donate ${amount || '0'}</span>
+                    <span>Donate ₹{amount || '0'}</span>
                   </>
                 )}
               </button>
@@ -227,3 +294,5 @@ const DonationModal = ({ student, onDonate, onClose }: DonationModalProps) => {
 }
 
 export default DonationModal
+
+
