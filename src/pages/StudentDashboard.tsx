@@ -21,6 +21,7 @@ import { useQuery } from '@tanstack/react-query'
 import { studentAPI, scholarshipAPI, proofAPI } from '@/services/api'
 import MilestoneProgressBar from '@/components/MilestoneProgressBar'
 import NFTBadgeDisplay from '@/components/NFTBadgeDisplay'
+import VerificationStatus from '@/components/VerificationStatus'
 import Loader from '@/components/Loader'
 import { Link } from 'react-router-dom'
 
@@ -268,17 +269,26 @@ const StudentDashboard = () => {
           transition={{ duration: 0.3 }}
         >
           {activeTab === 'overview' && (
-            <div className="grid md:grid-cols-2 gap-8">
-              {/* Progress Overview */}
-              <div className="card">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-                  Progress Overview
-                </h3>
-                <MilestoneProgressBar
-                  milestones={mockStudent.milestones}
-                  showDetails={false}
-                />
-              </div>
+            <div className="space-y-8">
+              {/* Verification Status */}
+              <VerificationStatus 
+                wallet={address || '0x1234...5678'} 
+                onVerificationComplete={(status) => {
+                  console.log('Verification completed:', status)
+                }}
+              />
+
+              <div className="grid md:grid-cols-2 gap-8">
+                {/* Progress Overview */}
+                <div className="card">
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+                    Progress Overview
+                  </h3>
+                  <MilestoneProgressBar
+                    milestones={mockStudent.milestones}
+                    showDetails={false}
+                  />
+                </div>
 
               {/* Recent Activity */}
               <div className="card">
@@ -307,6 +317,7 @@ const StudentDashboard = () => {
                     </div>
                   ))}
                 </div>
+              </div>
               </div>
             </div>
           )}

@@ -20,6 +20,9 @@ const Navbar = ({ onMenuClick }: NavbarProps) => {
     { path: '/donor', label: 'Donor' },
     { path: '/feed', label: 'Feed' },
     { path: '/leaderboard', label: 'Leaderboard' },
+    { path: '/analytics', label: 'Analytics' },
+    { path: '/ai-demo', label: 'AI Demo' },
+    { path: '/verification-demo', label: 'Verification' },
   ]
 
   return (
