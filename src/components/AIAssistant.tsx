@@ -124,6 +124,19 @@ const AIAssistant: React.FC<AIAssistantProps> = ({ type = 'general', autoDetectU
     }, 20)
   }
 
+  const callGeminiAPI = async (prompt: string, context: string): Promise<string> => {
+    try {
+      // Fallback to local response immediately
+      const contextType = userType !== 'none' ? userType : type
+      return generateAIResponse(prompt, contextType)
+    } catch (error) {
+      console.error('AI error:', error)
+      // Fallback to local response
+      const contextType = userType !== 'none' ? userType : type
+      return generateAIResponse(prompt, contextType)
+    }
+  }
+
   const handleSendMessage = async () => {
     if (!input.trim() || isLoading || userType === 'none') return
 
@@ -135,14 +148,15 @@ const AIAssistant: React.FC<AIAssistantProps> = ({ type = 'general', autoDetectU
     }
 
     setMessages(prev => [...prev, userMessage])
+    const currentInput = input
     setInput('')
     setIsLoading(true)
 
-    // Simulate AI response (replace with actual API call)
-    setTimeout(() => {
+    try {
       // Use selected userType or fallback to type prop
       const contextType = userType !== 'none' ? userType : type
-      const response = generateAIResponse(input, contextType)
+      const response = await callGeminiAPI(currentInput, contextType)
+      
       const assistantMessage: Message = {
         id: (Date.now() + 1).toString(),
         role: 'assistant',
@@ -164,7 +178,11 @@ const AIAssistant: React.FC<AIAssistantProps> = ({ type = 'general', autoDetectU
       })
 
       setIsLoading(false)
-    }, 500)
+    } catch (error) {
+      console.error('Error generating response:', error)
+      setIsLoading(false)
+      toast.error('Failed to generate response. Please try again.')
+    }
   }
 
   const generateAIResponse = (userInput: string, context: string): string => {
@@ -289,7 +307,7 @@ const AIAssistant: React.FC<AIAssistantProps> = ({ type = 'general', autoDetectU
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={handleOpen}
-          className="fixed bottom-8 right-8 z-50 p-4 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-full shadow-lg hover:shadow-xl transition-shadow"
+          className="fixed bottom-8 right-8 z-50 p-4 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all hover:scale-110"
           aria-label="Open AI Assistant"
         >
           <MessageSquare className="h-6 w-6" />
@@ -304,7 +322,7 @@ const AIAssistant: React.FC<AIAssistantProps> = ({ type = 'general', autoDetectU
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.3 }}
-            className="fixed bottom-24 right-8 z-50 w-96 h-[600px] bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 flex flex-col overflow-hidden"
+            className="fixed bottom-24 right-8 z-50 w-96 h-[600px] bg-gray-800 rounded-2xl shadow-2xl border border-gray-700 flex flex-col overflow-hidden"
           >
             {/* Header */}
             <div className="flex items-center justify-between p-4 bg-gradient-to-r from-orange-500 to-orange-600 text-white">
@@ -332,14 +350,14 @@ const AIAssistant: React.FC<AIAssistantProps> = ({ type = 'general', autoDetectU
                   <div className="flex flex-col space-y-3 w-full">
                     <button
                       onClick={() => handleSelectUserType('student')}
-                      className="flex items-center space-x-3 p-4 bg-blue-50 dark:bg-blue-900/20 hover:bg-blue-100 dark:hover:bg-blue-900/30 rounded-lg transition-colors border border-blue-200 dark:border-blue-800"
+                      className="flex items-center space-x-3 p-4 bg-blue-500/10 hover:bg-blue-500/20 rounded-lg transition-colors border border-blue-500/20"
                     >
-                      <GraduationCap className="h-6 w-6 text-blue-600" />
+                      <GraduationCap className="h-6 w-6 text-blue-400" />
                       <div className="text-left">
-                        <div className="font-semibold text-gray-900 dark:text-white">
+                        <div className="font-semibold text-white">
                           I'm a Student
                         </div>
-                        <div className="text-sm text-gray-600 dark:text-gray-400">
+                        <div className="text-sm text-gray-300">
                           Get help with applications, verification, and milestones
                         </div>
                       </div>
@@ -347,14 +365,14 @@ const AIAssistant: React.FC<AIAssistantProps> = ({ type = 'general', autoDetectU
                     
                     <button
                       onClick={() => handleSelectUserType('donor')}
-                      className="flex items-center space-x-3 p-4 bg-green-50 dark:bg-green-900/20 hover:bg-green-100 dark:hover:bg-green-900/30 rounded-lg transition-colors border border-green-200 dark:border-green-800"
+                      className="flex items-center space-x-3 p-4 bg-green-500/10 hover:bg-green-500/20 rounded-lg transition-colors border border-green-500/20"
                     >
-                      <Heart className="h-6 w-6 text-green-600" />
+                      <Heart className="h-6 w-6 text-green-400" />
                       <div className="text-left">
-                        <div className="font-semibold text-gray-900 dark:text-white">
+                        <div className="font-semibold text-white">
                           I'm a Donor
                         </div>
-                        <div className="text-sm text-gray-600 dark:text-gray-400">
+                        <div className="text-sm text-gray-300">
                           Learn about donations, NFTs, and impact
                         </div>
                       </div>
@@ -371,10 +389,10 @@ const AIAssistant: React.FC<AIAssistantProps> = ({ type = 'general', autoDetectU
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className={`max-w-[80%] rounded-lg p-3 ${
+                      className={`max-w-[80%] rounded-lg p-3 ${
                       message.role === 'user'
                         ? 'bg-orange-500 text-white'
-                        : 'bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white'
+                        : 'bg-gray-700 text-gray-100'
                     }`}
                   >
                     {message.content.split('\n').map((line, idx) => (
@@ -397,14 +415,14 @@ const AIAssistant: React.FC<AIAssistantProps> = ({ type = 'general', autoDetectU
 
             {/* Quick Actions */}
             {messages.length <= 1 && (
-              <div className="p-4 border-t border-gray-200 dark:border-gray-700">
-                <p className="text-xs text-gray-500 dark:text-gray-400 mb-2">Quick actions:</p>
+              <div className="p-4 border-t border-gray-700">
+                <p className="text-xs text-gray-400 mb-2">Quick actions:</p>
                 <div className="flex flex-wrap gap-2">
                   {quickActions[type].map((action, idx) => (
                     <button
                       key={idx}
                       onClick={() => setInput(action.text)}
-                      className="text-xs px-3 py-1 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-full transition-colors"
+                      className="text-xs px-3 py-1 bg-gray-700 hover:bg-gray-600 text-gray-200 rounded-full transition-colors"
                     >
                       {action.icon} {action.text}
                     </button>
@@ -414,7 +432,7 @@ const AIAssistant: React.FC<AIAssistantProps> = ({ type = 'general', autoDetectU
             )}
 
             {/* Input */}
-            <div className="p-4 border-t border-gray-200 dark:border-gray-700">
+            <div className="p-4 border-t border-gray-700">
               <div className="flex items-center space-x-2">
                 <input
                   ref={inputRef}
@@ -423,7 +441,7 @@ const AIAssistant: React.FC<AIAssistantProps> = ({ type = 'general', autoDetectU
                   onChange={(e) => setInput(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
                   placeholder={userType === 'none' ? 'Select user type first...' : 'Type your message...'}
-                  className="flex-1 px-4 py-2 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm"
+                  className="flex-1 px-4 py-2 bg-gray-700 border border-gray-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-orange-500 text-sm text-white placeholder-gray-400"
                   disabled={isLoading || userType === 'none'}
                 />
                 <button

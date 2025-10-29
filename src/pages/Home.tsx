@@ -120,61 +120,32 @@ const Home = () => {
   ]
 
   return (
-    <div className="min-h-screen gradient-hero">
-      {/* Hero Section */}
-      <section className="relative py-20 px-4">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            {/* AI-Powered Badge */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="inline-flex items-center space-x-2 bg-gradient-to-r from-orange-500 to-blue-600 text-white px-4 py-2 rounded-full text-sm font-medium mb-6"
-            >
-              <Brain className="h-4 w-4" />
-              <span>AI-Powered Verification</span>
-            </motion.div>
-
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
-              FundMeUp
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-300 mb-4 max-w-3xl mx-auto">
-              AI-Powered Web3 Scholarships for Transparent Education Funding
-            </p>
-            <p className="text-lg text-orange-300 mb-8 max-w-2xl mx-auto font-medium">
-              "Funding Futures, One Verified Milestone at a Time"
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/donor">
-                <Button
-                  variant="primary"
-                  size="lg"
-                  icon={ArrowRight}
-                  iconPosition="right"
-                >
+    <div className="min-h-screen bg-gray-900">
+      {/* Hero Section - Mailgo Style */}
+      <section>
+        <div className="custom-screen py-28">
+          <div>
+            <div className="space-y-5 max-w-3xl mx-auto text-center">
+              <h1 className="text-4xl bg-clip-text text-transparent bg-gradient-to-r font-extrabold mx-auto sm:text-6xl"
+                style={{
+                  backgroundImage: "linear-gradient(179.1deg, #FFFFFF 0.77%, rgba(255, 255, 255, 0) 182.09%)"
+                }}
+              >
+                FundMeUp - Web3 Scholarships
+              </h1>
+              <p className="max-w-xl mx-auto text-gray-300">
+                AI-Powered transparent scholarship platform. Support students, verify milestones, and fund education on the blockchain.
+              </p>
+              <div className="flex justify-center font-medium text-sm">
+                <Link to="/donor" className="flex items-center text-white bg-orange-500 hover:bg-orange-600 active:bg-orange-700 px-6 py-3 rounded-lg transition-colors">
                   Start Funding Students
-                </Button>
-              </Link>
-              <Link to="/student">
-                <Button
-                  variant="outline"
-                  size="lg"
-                  icon={GraduationCap}
-                  iconPosition="left"
-                  className="text-white border-white hover:bg-white hover:text-gray-900"
-                >
-                  Apply for Scholarship
-                </Button>
-              </Link>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5 ml-1">
+                    <path fillRule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clipRule="evenodd" />
+                  </svg>
+                </Link>
+              </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Live Stats */}
           <motion.div
@@ -212,8 +183,8 @@ const Home = () => {
       </section>
 
       {/* Why FundMeUp Exists Section */}
-      <section className="py-16 px-4 bg-white dark:bg-gray-900">
-        <div className="max-w-7xl mx-auto">
+      <section className="py-16 px-4 bg-gray-900">
+        <div className="custom-screen">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -581,5 +552,6 @@ const Home = () => {
 }
 
 export default Home
+
 
 

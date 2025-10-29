@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { 
   Heart, 
   Search, 
@@ -155,7 +156,7 @@ const DonorDashboard = () => {
 
   const handleDonate = (studentId: string, amount: number) => {
     console.log(`Donated ₹${amount.toLocaleString("en-IN")} to student ${studentId}`)
-    // Here you would call the API to process the donation
+    // Note: Actual saving is handled by DonationModal component
   }
 
   const handleViewProfile = (studentId: string) => {
@@ -202,14 +203,10 @@ const DonorDashboard = () => {
               </p>
             </div>
             <div className="mt-4 md:mt-0 flex space-x-3">
-              <button className="btn-outline flex items-center space-x-2">
-                <TrendingUp className="h-4 w-4" />
-                <span>My Impact</span>
-              </button>
-              <button className="btn-primary flex items-center space-x-2">
+              <Link to="/my-donations" className="btn-primary flex items-center space-x-2">
                 <Heart className="h-4 w-4" />
                 <span>Recent Donations</span>
-              </button>
+              </Link>
             </div>
           </div>
         </motion.div>

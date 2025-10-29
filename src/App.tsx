@@ -17,6 +17,7 @@ import ApplyPage from './pages/ApplyPage'
 import DonatePage from './pages/DonatePage'
 import ImpactPage from './pages/ImpactPage'
 import NFTClaimPage from './pages/NFTClaimPage'
+import MyDonations from './pages/MyDonations'
 
 // Components
 import Navbar from './components/Navbar'
@@ -28,7 +29,7 @@ function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   return (
-    <div className="min-h-screen bg-gradient-hero">
+    <div className="min-h-screen bg-gray-900">
       {/* Navigation */}
       <Navbar onMenuClick={() => setSidebarOpen(true)} />
       
@@ -57,9 +58,10 @@ function App() {
             <Route path="/ai-demo" element={<AIDemo />} />
             <Route path="/verification-demo" element={<VerificationDemo />} />
             <Route path="/apply" element={<ApplyPage />} />
-            <Route path="/donate" element={<DonatePage />} />
-            <Route path="/impact" element={<ImpactPage />} />
-            <Route path="/nft-claim" element={<NFTClaimPage />} />
+                  <Route path="/donate" element={<DonatePage />} />
+                  <Route path="/impact" element={<ImpactPage />} />
+                  <Route path="/nft-claim" element={<NFTClaimPage />} />
+                  <Route path="/my-donations" element={<MyDonations />} />
           </Routes>
         </motion.div>
       </main>
@@ -97,4 +99,5 @@ function App() {
 }
 
 export default App
+
 
