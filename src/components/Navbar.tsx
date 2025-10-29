@@ -32,7 +32,7 @@ const Navbar = ({ onMenuClick }: NavbarProps) => {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="sticky top-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-700"
+      className="sticky top-0 z-50 bg-gray-900 border-b border-gray-800"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
@@ -54,8 +54,8 @@ const Navbar = ({ onMenuClick }: NavbarProps) => {
                 to={item.path}
                 className={`px-3 py-2 rounded-md text-sm font-medium transition-colors whitespace-nowrap ${
                   isActive(item.path)
-                    ? 'text-orange-600 bg-orange-50 dark:bg-orange-900/20 dark:text-orange-400'
-                    : 'text-gray-600 dark:text-gray-300 hover:text-orange-600 hover:bg-orange-50 dark:hover:bg-orange-900/20'
+                    ? 'text-orange-500 bg-gray-800'
+                    : 'text-gray-300 hover:text-orange-400 hover:bg-gray-800'
                 }`}
               >
                 {item.label}
@@ -70,7 +70,7 @@ const Navbar = ({ onMenuClick }: NavbarProps) => {
             </div>
             <button
               onClick={onMenuClick}
-              className="p-2 rounded-md text-gray-600 dark:text-gray-300 hover:text-orange-600 hover:bg-orange-50 dark:hover:bg-orange-900/20"
+              className="p-2 rounded-md text-gray-300 hover:text-orange-400 hover:bg-gray-800"
             >
               <Menu className="h-6 w-6" />
             </button>
@@ -82,3 +82,6 @@ const Navbar = ({ onMenuClick }: NavbarProps) => {
 }
 
 export default Navbar
+
+
+

@@ -244,7 +244,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Documentation**: [docs.fundmeup.com](https://docs.fundmeup.com)
 - **Discord**: [discord.gg/fundmeup](https://discord.gg/fundmeup)
 - **Email**: support@fundmeup.com
-- **Twitter**: [@FundMeUpAI](https://twitter.com/FundMeUpAI)
 
 ## 🎯 Roadmap
 

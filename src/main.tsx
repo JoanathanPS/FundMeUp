@@ -3,9 +3,10 @@ import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { WagmiProvider } from 'wagmi'
-import { RainbowKitProvider, getDefaultConfig } from '@rainbow-me/rainbowkit'
+import { RainbowKitProvider, getDefaultConfig, connectorsForWallets } from '@rainbow-me/rainbowkit'
+import { metaMaskWallet, walletConnectWallet, coinbaseWallet } from '@rainbow-me/rainbowkit/wallets'
 import { Toaster } from 'react-hot-toast'
-import { mainnet, sepolia, hardhat } from 'wagmi/chains'
+import { mainnet } from 'wagmi/chains'
 
 import App from './App'
 import ErrorBoundary from './components/ErrorBoundary'
@@ -34,25 +35,15 @@ const queryClient = new QueryClient({
   },
 })
 
-// Configure RainbowKit with fallback
-let config
-try {
-  config = getDefaultConfig({
-    appName: 'FundMeUp',
-    projectId: import.meta.env.VITE_WALLETCONNECT_PROJECT_ID || 'demo-project-id-for-local-dev',
-    chains: [mainnet, sepolia, hardhat],
-    ssr: false,
-  })
-} catch (error) {
-  console.error('Error configuring RainbowKit:', error)
-  // Create a minimal config as fallback
-  config = getDefaultConfig({
-    appName: 'FundMeUp',
-    projectId: 'demo-project-id-for-local-dev',
-    chains: [hardhat],
-    ssr: false,
-  })
-}
+// Configure RainbowKit - getDefaultConfig automatically includes MetaMask, Coinbase, etc.
+const config = getDefaultConfig({
+  appName: 'FundMeUp',
+  projectId: import.meta.env.VITE_WALLETCONNECT_PROJECT_ID || 'demo-project-id-for-fundmeup',
+  chains: [mainnet],
+  ssr: false,
+})
+
+console.log('RainbowKit config initialized successfully')
 
 ReactDOM.createRoot(rootElement!).render(
   <React.StrictMode>

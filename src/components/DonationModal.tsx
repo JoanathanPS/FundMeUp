@@ -4,6 +4,7 @@ import { X, Heart, DollarSign, TrendingUp, Shield, Award, CheckCircle, Sparkles 
 import { useWeb3 } from '@/services/web3'
 import { scholarshipAPI } from '@/services/api'
 import toast from 'react-hot-toast'
+import { donationStorage } from '@/utils/donationStorage'
 
 interface Student {
   id: string
@@ -29,56 +30,40 @@ const DonationModal = ({ student, onDonate, onClose }: DonationModalProps) => {
   const presetAmounts = [1000, 5000, 10000, 25000, 50000, 100000] // INR amounts
 
   const handleDonate = async () => {
-    if (!isConnected) {
-      toast.error('Please connect your wallet first')
-      return
-    }
-
     if (!amount || parseFloat(amount) <= 0) {
       toast.error('Please enter a valid amount')
       return
     }
 
     setIsLoading(true)
+    
+    // Simulate blockchain transaction delay
+    await new Promise(resolve => setTimeout(resolve, 1500))
+    
     try {
-      // Mock donation process for demo
-      const donationData = {
+      // Save donation to local storage
+      const savedDonation = donationStorage.saveDonation({
         studentId: student.id,
-        studentWallet: student.wallet,
+        studentName: student.dream,
         amount: parseFloat(amount),
-        message: message || `Supporting ${student.dream}`,
-        donorWallet: address,
-      }
+        milestone: message || 'General Support',
+        transactionHash: '0x' + Math.random().toString(16).substr(2, 64)
+      })
 
-      // Simulate API call with realistic delay
-      await new Promise(resolve => setTimeout(resolve, 2000))
+      console.log('Donation saved:', savedDonation)
       
-      // Mock successful response
-      const mockResponse = {
-        success: true,
-        data: {
-          txHash: '0x' + Math.random().toString(16).substr(2, 64),
-          amount: parseFloat(amount),
-          studentName: student.dream,
-          timestamp: new Date().toISOString()
-        }
-      }
-
-      if (mockResponse.success) {
-        setDonationSuccess(true)
-        toast.success(`🎉 Donation of ₹${amount} successful!`)
-        
-        // Show success state for 3 seconds then close
-        setTimeout(() => {
-          setDonationSuccess(false)
-          onDonate(parseFloat(amount))
-          onClose()
-        }, 3000)
-      }
+      setDonationSuccess(true)
+      toast.success(`🎉 Donation of ₹${amount} successful!`)
+      
+      // Show success state for 3 seconds then close
+      setTimeout(() => {
+        setDonationSuccess(false)
+        onDonate(parseFloat(amount))
+        onClose()
+      }, 3000)
     } catch (error) {
       console.error('Donation error:', error)
       toast.error('Failed to process donation. Please try again.')
-    } finally {
       setIsLoading(false)
     }
   }
@@ -268,7 +253,10 @@ const DonationModal = ({ student, onDonate, onClose }: DonationModalProps) => {
                 className="flex-1 btn-primary flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isLoading ? (
-                  <div className="spinner" />
+                  <>
+                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                    <span>Processing...</span>
+                  </>
                 ) : (
                   <>
                     <Heart className="h-4 w-4" />
@@ -278,14 +266,12 @@ const DonationModal = ({ student, onDonate, onClose }: DonationModalProps) => {
               </button>
             </div>
 
-            {/* Connection Status */}
-            {!isConnected && (
-              <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-3">
-                <p className="text-sm text-yellow-800 dark:text-yellow-200">
-                  Please connect your wallet to make a donation
-                </p>
-              </div>
-            )}
+            {/* Demo Mode Notice */}
+            <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-3">
+              <p className="text-sm text-green-800 dark:text-green-200">
+                💡 Demo Mode: Donations are saved locally. Connect wallet for blockchain transactions.
+              </p>
+            </div>
           </div>
         </motion.div>
       </motion.div>

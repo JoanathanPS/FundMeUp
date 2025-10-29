@@ -3,10 +3,12 @@ import { motion } from 'framer-motion'
 import { Wallet, User, LogOut, Copy, Check } from 'lucide-react'
 import { useState } from 'react'
 import { toast } from 'react-hot-toast'
+import { useDisconnect } from 'wagmi'
 
 const WalletConnectButton = () => {
   const [copied, setCopied] = useState(false)
   const [hoveredAddress, setHoveredAddress] = useState<string | null>(null)
+  const { disconnect } = useDisconnect()
 
   const copyToClipboard = async (text: string) => {
     try {
@@ -79,14 +81,8 @@ const WalletConnectButton = () => {
 
               return (
                 <div className="flex items-center gap-3">
-                  {/* Network Button */}
-                  <motion.button
-                    whileHover={{ scale: 1.03 }}
-                    whileTap={{ scale: 0.97 }}
-                    onClick={openChainModal}
-                    className="flex items-center justify-between gap-2 px-4 py-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-200 shadow-sm"
-                    title="Switch Network"
-                  >
+                  {/* Network Badge (Read-only) */}
+                  <div className="flex items-center justify-between gap-2 px-4 py-2 rounded-xl bg-gray-800 border border-gray-700">
                     {chain.hasIcon && (
                       <div className="flex items-center justify-center">
                         <img
@@ -96,10 +92,10 @@ const WalletConnectButton = () => {
                         />
                       </div>
                     )}
-                    <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                    <span className="text-sm font-medium text-gray-300">
                       {chain.name}
                     </span>
-                  </motion.button>
+                  </div>
 
                   {/* Wallet Address Button with Copy Functionality */}
                   <motion.button
@@ -146,6 +142,35 @@ const WalletConnectButton = () => {
                       </motion.div>
                     )}
                   </motion.button>
+
+                  {/* Logout Button */}
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={async () => {
+                      try {
+                        await disconnect()
+                        const keysToRemove: string[] = []
+                        for (let i = 0; i < localStorage.length; i++) {
+                          const key = localStorage.key(i)
+                          if (key && (key.includes('wagmi') || key.includes('wallet') || key.includes('rainbow'))) {
+                            keysToRemove.push(key)
+                          }
+                        }
+                        keysToRemove.forEach(key => localStorage.removeItem(key))
+                        toast.success('Wallet disconnected!')
+                        setTimeout(() => window.location.reload(), 500)
+                      } catch (error) {
+                        console.error('Disconnect error:', error)
+                        toast.error('Error disconnecting')
+                        setTimeout(() => window.location.reload(), 500)
+                      }
+                    }}
+                    className="px-4 py-2 rounded-lg bg-red-600 hover:bg-red-700 text-white transition-all shadow-md flex items-center gap-2"
+                  >
+                    <LogOut className="h-4 w-4" />
+                    <span className="text-sm font-semibold">Logout</span>
+                  </motion.button>
                 </div>
               )
             })()}
@@ -157,3 +182,5 @@ const WalletConnectButton = () => {
 }
 
 export default WalletConnectButton
+
+
