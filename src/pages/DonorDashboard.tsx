@@ -154,7 +154,7 @@ const DonorDashboard = () => {
   })
 
   const handleDonate = (studentId: string, amount: number) => {
-    console.log(`Donated $${amount} to student ${studentId}`)
+    console.log(`Donated ₹${amount.toLocaleString("en-IN")} to student ${studentId}`)
     // Here you would call the API to process the donation
   }
 

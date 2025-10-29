@@ -125,6 +125,10 @@ export const verificationAPI = {
   getPending: () => api.get('/verification/pending'),
   approve: (id: string) => api.post(`/verification/${id}/approve`),
   reject: (id: string) => api.post(`/verification/${id}/reject`),
+  // Email verification endpoints
+  requestEmailVerification: (data: any) => api.post('/verification/v3/request-email', data),
+  verifyEmailCode: (data: any) => api.post('/verification/v3/verify-email', data),
+  getEmailVerificationStatus: (verificationId: string) => api.get(`/verification/v3/status/${verificationId}`),
 }
 
 export default api

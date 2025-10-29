@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { 
   CheckCircle, 
@@ -12,7 +12,9 @@ import {
   Award,
   MapPin,
   Database,
-  Sparkles
+  Sparkles,
+  HelpCircle,
+  Loader2
 } from 'lucide-react'
 import RegionalDataService from '../services/regionalData'
 
@@ -36,16 +38,19 @@ interface AIVerificationPanelProps {
     institution?: string
     region?: string
     gpa?: number
+    name?: string
   }
   onOverride?: (action: 'approve' | 'reject') => void
   showOverride?: boolean
+  isProcessing?: boolean
 }
 
 const AIVerificationPanel: React.FC<AIVerificationPanelProps> = ({ 
   analysis, 
   studentInfo,
   onOverride, 
-  showOverride = false 
+  showOverride = false,
+  isProcessing = false
 }) => {
   const regionalService = RegionalDataService.getInstance()
   
@@ -54,7 +59,14 @@ const AIVerificationPanel: React.FC<AIVerificationPanelProps> = ({
     ? regionalService.verifyInstitution(studentInfo.institution, studentInfo.region)
     : null
 
-  const isSmartVerified = analysis.verdict === 'approve' && regionalVerification?.verified
+  // Enhanced Smart Verification Logic
+  const isSmartVerified = 
+    analysis.verdict === 'approve' && 
+    analysis.confidence > 85 && 
+    regionalVerification?.verified
+  
+  // Tooltip state
+  const [showTooltip, setShowTooltip] = useState<string | null>(null)
   const getRiskColor = (score: number) => {
     if (score <= 30) return 'text-green-600'
     if (score <= 60) return 'text-yellow-600'
@@ -120,11 +132,25 @@ const AIVerificationPanel: React.FC<AIVerificationPanelProps> = ({
 
       {/* Risk Score & Confidence */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className={`p-4 rounded-lg ${getRiskBg(analysis.riskScore)}`}>
+        <div className={`p-4 rounded-lg ${getRiskBg(analysis.riskScore)} relative`}>
           <div className="flex items-center justify-between mb-2">
-            <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-              Risk Score
-            </span>
+            <div className="flex items-center space-x-2">
+              <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                Risk Score
+              </span>
+              <div 
+                className="relative"
+                onMouseEnter={() => setShowTooltip('risk')}
+                onMouseLeave={() => setShowTooltip(null)}
+              >
+                <HelpCircle className="h-4 w-4 text-gray-500 cursor-help" />
+                {showTooltip === 'risk' && (
+                  <div className="absolute left-0 top-6 z-10 w-64 p-3 bg-gray-900 text-white text-xs rounded-lg shadow-lg">
+                    Risk score (0-100) indicates the probability of fraud. Lower scores are better. Based on document authenticity, consistency, and pattern analysis.
+                  </div>
+                )}
+              </div>
+            </div>
             <Shield className="h-4 w-4 text-gray-500" />
           </div>
           <div className="flex items-center space-x-3">
@@ -147,11 +173,25 @@ const AIVerificationPanel: React.FC<AIVerificationPanelProps> = ({
           </div>
         </div>
 
-        <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+        <div className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg relative">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-              AI Confidence
-            </span>
+            <div className="flex items-center space-x-2">
+              <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                AI Confidence
+              </span>
+              <div 
+                className="relative"
+                onMouseEnter={() => setShowTooltip('confidence')}
+                onMouseLeave={() => setShowTooltip(null)}
+              >
+                <HelpCircle className="h-4 w-4 text-gray-500 cursor-help" />
+                {showTooltip === 'confidence' && (
+                  <div className="absolute left-0 top-6 z-10 w-64 p-3 bg-gray-900 text-white text-xs rounded-lg shadow-lg">
+                    AI confidence (0-100%) represents how certain the AI is about its analysis. Calculated from document quality, pattern matching, and verification checks.
+                  </div>
+                )}
+              </div>
+            </div>
             <TrendingUp className="h-4 w-4 text-blue-500" />
           </div>
           <div className="flex items-center space-x-3">
@@ -352,25 +392,53 @@ const AIVerificationPanel: React.FC<AIVerificationPanelProps> = ({
 
       {/* Override Actions */}
       {showOverride && onOverride && (
-        <div className="border-t pt-6">
-          <h4 className="font-semibold text-gray-900 dark:text-white mb-4">
-            Admin Override
+        <div className="border-t border-gray-200 dark:border-gray-700 pt-6">
+          <h4 className="font-semibold text-gray-900 dark:text-white mb-4 flex items-center space-x-2">
+            <Shield className="h-5 w-5 text-gray-500" />
+            <span>Admin Override</span>
           </h4>
-          <div className="flex space-x-4">
-            <button
+          <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+            Manually override the AI decision in special cases. Use with caution.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3">
+            <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
               onClick={() => onOverride('approve')}
-              className="btn-primary flex items-center space-x-2"
+              disabled={isProcessing}
+              className="btn-primary flex items-center justify-center space-x-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              <CheckCircle className="h-4 w-4" />
-              <span>Force Approve</span>
-            </button>
-            <button
+              {isProcessing ? (
+                <>
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                  <span>Processing...</span>
+                </>
+              ) : (
+                <>
+                  <CheckCircle className="h-4 w-4" />
+                  <span>Force Approve</span>
+                </>
+              )}
+            </motion.button>
+            <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
               onClick={() => onOverride('reject')}
-              className="btn-danger flex items-center space-x-2"
+              disabled={isProcessing}
+              className="btn-outline border-red-500 text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 flex items-center justify-center space-x-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              <XCircle className="h-4 w-4" />
-              <span>Force Reject</span>
-            </button>
+              {isProcessing ? (
+                <>
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                  <span>Processing...</span>
+                </>
+              ) : (
+                <>
+                  <XCircle className="h-4 w-4" />
+                  <span>Force Reject</span>
+                </>
+              )}
+            </motion.button>
           </div>
         </div>
       )}

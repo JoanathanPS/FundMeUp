@@ -1,10 +1,12 @@
 import { Routes, Route } from 'react-router-dom'
 import { motion } from 'framer-motion'
+import { Toaster } from 'react-hot-toast'
 
 // Pages
 import Home from './pages/Home'
 import StudentDashboard from './pages/StudentDashboard'
 import SubmitProof from './pages/SubmitProof'
+import StudentVerification from './pages/StudentVerification'
 import DonorDashboard from './pages/DonorDashboard'
 import ImpactFeed from './pages/ImpactFeed'
 import Leaderboard from './pages/Leaderboard'
@@ -42,6 +44,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/student" element={<StudentDashboard />} />
             <Route path="/student/upload" element={<SubmitProof />} />
+            <Route path="/student/verification" element={<StudentVerification />} />
             <Route path="/donor" element={<DonorDashboard />} />
             <Route path="/feed" element={<ImpactFeed />} />
             <Route path="/leaderboard" element={<Leaderboard />} />
@@ -51,6 +54,32 @@ function App() {
           </Routes>
         </motion.div>
       </main>
+      
+      {/* Toast Notifications */}
+      <Toaster
+        position="top-right"
+        toastOptions={{
+          duration: 4000,
+          style: {
+            background: '#363636',
+            color: '#fff',
+          },
+          success: {
+            duration: 3000,
+            iconTheme: {
+              primary: '#10B981',
+              secondary: '#fff',
+            },
+          },
+          error: {
+            duration: 5000,
+            iconTheme: {
+              primary: '#EF4444',
+              secondary: '#fff',
+            },
+          },
+        }}
+      />
     </div>
   )
 }

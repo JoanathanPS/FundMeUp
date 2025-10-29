@@ -14,7 +14,8 @@ import {
   Building,
   CheckCircle,
   Clock,
-  AlertCircle
+  AlertCircle,
+  Shield
 } from 'lucide-react'
 import { useWeb3 } from '@/services/web3'
 import { useQuery } from '@tanstack/react-query'
@@ -22,6 +23,7 @@ import { studentAPI, scholarshipAPI, proofAPI } from '@/services/api'
 import MilestoneProgressBar from '@/components/MilestoneProgressBar'
 import NFTBadgeDisplay from '@/components/NFTBadgeDisplay'
 import VerificationStatus from '@/components/VerificationStatus'
+import VerificationBadge from '@/components/VerificationBadge'
 import Loader from '@/components/Loader'
 import { Link } from 'react-router-dom'
 
@@ -171,6 +173,13 @@ const StudentDashboard = () => {
                 <Upload className="h-4 w-4" />
                 <span>Submit Proof</span>
               </Link>
+              <Link
+                to="/student/verification"
+                className="btn-outline flex items-center space-x-2"
+              >
+                <Shield className="h-4 w-4" />
+                <span>Verify Email</span>
+              </Link>
               <button className="btn-outline flex items-center space-x-2">
                 <Edit className="h-4 w-4" />
                 <span>Edit Profile</span>
@@ -192,9 +201,16 @@ const StudentDashboard = () => {
                 <GraduationCap className="h-8 w-8 text-white" />
               </div>
               <div>
-                <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-                  {mockStudent.dream}
-                </h2>
+                <div className="flex items-center space-x-3 mb-2">
+                  <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+                    {mockStudent.dream}
+                  </h2>
+                  <VerificationBadge 
+                    isVerified={mockStudent.isEmailVerified || false}
+                    verificationType="email"
+                    className="text-xs"
+                  />
+                </div>
                 <div className="flex items-center space-x-4 text-sm text-gray-600 dark:text-gray-400 mt-1">
                   <div className="flex items-center space-x-1">
                     <Building className="h-4 w-4" />
@@ -214,7 +230,7 @@ const StudentDashboard = () => {
             <div className="mt-4 md:mt-0 flex space-x-6">
               <div className="text-center">
                 <div className="text-2xl font-bold text-orange-600">
-                  ${mockStudent.totalFunded.toLocaleString()}
+                  ₹{mockStudent.totalFunded.toLocaleString("en-IN")}
                 </div>
                 <div className="text-sm text-gray-500 dark:text-gray-400">Total Funded</div>
               </div>
@@ -358,10 +374,10 @@ const StudentDashboard = () => {
                     </div>
                     <div className="text-right">
                       <div className="text-2xl font-bold text-green-600">
-                        ${scholarship.funded.toLocaleString()}
+                        ₹{scholarship.funded.toLocaleString("en-IN")}
                       </div>
                       <div className="text-sm text-gray-500 dark:text-gray-400">
-                        of ${scholarship.amount.toLocaleString()}
+                        of ₹{scholarship.amount.toLocaleString("en-IN")}
                       </div>
                     </div>
                   </div>
