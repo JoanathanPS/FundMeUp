@@ -152,7 +152,7 @@ const StudentCard = ({
         <div className="grid grid-cols-2 gap-4 mb-4">
           <div className="text-center">
             <div className="text-lg font-semibold text-orange-600">
-              {student.totalFunded ? `$${student.totalFunded.toLocaleString()}` : '$0'}
+              {student.totalFunded ? `₹${student.totalFunded.toLocaleString("en-IN")}` : '₹0'}
             </div>
             <div className="text-xs text-gray-500 dark:text-gray-400">Total Funded</div>
           </div>
@@ -165,23 +165,23 @@ const StudentCard = ({
         </div>
 
         {/* Actions */}
-        <div className="flex space-x-2">
-          {showDonateButton && (
+        <div className="flex gap-3 mt-4">
+          {showDonateButton ? (
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               onClick={() => setShowDonationModal(true)}
-              className="flex-1 btn-primary flex items-center justify-center space-x-2"
+              className="flex-1 h-12 btn-primary flex items-center justify-center space-x-2 font-semibold"
             >
               <Heart className="h-4 w-4" />
               <span>Donate</span>
             </motion.button>
-          )}
+          ) : null}
           <motion.button
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             onClick={() => onViewProfile?.(student.id)}
-            className="btn-outline flex items-center justify-center space-x-2"
+            className={`h-12 ${showDonateButton ? 'flex-1' : 'w-full'} btn-outline flex items-center justify-center space-x-2 font-semibold`}
           >
             <ExternalLink className="h-4 w-4" />
             <span>View</span>

@@ -308,7 +308,7 @@ const ImpactFeed = () => {
                             New Donation
                           </span>
                           <span className="text-lg font-bold text-red-600">
-                            ${activity.amount.toLocaleString()}
+                            ₹{activity.amount.toLocaleString("en-IN")}
                           </span>
                         </div>
                         <p className="text-sm text-red-700 dark:text-red-300">
@@ -356,7 +356,7 @@ const ImpactFeed = () => {
                             Scholarship Created
                           </span>
                           <span className="text-lg font-bold text-green-600">
-                            ${activity.scholarship?.amount.toLocaleString()}
+                            ₹{activity.scholarship?.amount.toLocaleString("en-IN")}
                           </span>
                         </div>
                         <p className="text-sm text-green-700 dark:text-green-300">

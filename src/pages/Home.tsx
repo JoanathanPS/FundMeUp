@@ -25,6 +25,8 @@ import StudentCard from '@/components/StudentCard'
 import WalletConnectButton from '@/components/WalletConnectButton'
 import Loader from '@/components/Loader'
 import ImpactMetrics from '@/components/ImpactMetrics'
+import ETHPriceChart from '@/components/ETHPriceChart'
+import Button from '@/components/Button'
 
 const Home = () => {
   // Fetch global stats
@@ -150,21 +152,27 @@ const Home = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="btn-primary text-lg px-8 py-4"
-              >
-                Start Funding Students
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="btn-outline text-lg px-8 py-4 text-white border-white hover:bg-white hover:text-gray-900"
-              >
-                Apply for Scholarship
-              </motion.button>
+              <Link to="/donor">
+                <Button
+                  variant="primary"
+                  size="lg"
+                  icon={ArrowRight}
+                  iconPosition="right"
+                >
+                  Start Funding Students
+                </Button>
+              </Link>
+              <Link to="/student">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  icon={GraduationCap}
+                  iconPosition="left"
+                  className="text-white border-white hover:bg-white hover:text-gray-900"
+                >
+                  Apply for Scholarship
+                </Button>
+              </Link>
             </div>
           </motion.div>
 
@@ -425,6 +433,13 @@ const Home = () => {
         </div>
       </section>
 
+      {/* ETH Price Tracker Section */}
+      <section className="py-16 px-4 bg-white dark:bg-gray-900">
+        <div className="max-w-7xl mx-auto">
+          <ETHPriceChart />
+        </div>
+      </section>
+
       {/* Student Success Stories Section */}
       <section className="py-16 px-4 bg-white dark:bg-gray-900">
         <div className="max-w-7xl mx-auto">
@@ -503,7 +518,7 @@ const Home = () => {
             </motion.div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
             {mockStudents.map((student, index) => (
               <motion.div
                 key={student.id}
@@ -516,13 +531,13 @@ const Home = () => {
             ))}
           </div>
 
-          <div className="text-center mt-12">
+          <div className="mt-8 mb-16 flex justify-center">
             <Link
               to="/student"
-              className="btn-primary text-lg px-8 py-4"
+              className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-lg font-semibold shadow-md transition-colors duration-200 flex items-center space-x-2"
             >
-              View All Students
-              <ArrowRight className="ml-2 h-5 w-5" />
+              <span>View All Students</span>
+              <ArrowRight className="h-5 w-5" />
             </Link>
           </div>
         </div>
@@ -566,3 +581,5 @@ const Home = () => {
 }
 
 export default Home
+
+
