@@ -17,6 +17,7 @@ import VerificationDemo from './pages/VerificationDemo'
 // Components
 import Navbar from './components/Navbar'
 import Sidebar from './components/Sidebar'
+import AIAssistant from './components/AIAssistant'
 import { useState } from 'react'
 
 function App() {
@@ -80,6 +81,9 @@ function App() {
           },
         }}
       />
+      
+      {/* AI Assistant - Available on all pages */}
+      <AIAssistant type="general" />
     </div>
   )
 }

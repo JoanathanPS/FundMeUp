@@ -34,3 +34,4 @@ const Loader = ({ size = 'md', text, className = '' }: LoaderProps) => {
 }
 
 export default Loader
+

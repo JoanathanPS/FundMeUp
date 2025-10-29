@@ -142,3 +142,4 @@ const NFTBadgeDisplay = ({ badge, showDetails = true, onClick }: NFTBadgeDisplay
 }
 
 export default NFTBadgeDisplay
+
