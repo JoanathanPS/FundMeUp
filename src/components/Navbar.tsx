@@ -15,18 +15,16 @@ const Navbar = ({ onMenuClick }: NavbarProps) => {
     return location.pathname === path || location.pathname.startsWith(path + '/')
   }
 
-  const mainNavItems = [
+  const navItems = [
     { path: '/', label: 'Home' },
     { path: '/student', label: 'Student' },
     { path: '/donor', label: 'Donor' },
     { path: '/feed', label: 'Feed' },
-  ]
-
-  const moreNavItems = [
     { path: '/apply', label: 'Apply' },
     { path: '/donate', label: 'Donate' },
     { path: '/impact', label: 'Impact' },
     { path: '/leaderboard', label: 'Leaderboard' },
+    { path: '/analytics', label: 'Analytics' },
   ]
 
   return (
@@ -49,8 +47,8 @@ const Navbar = ({ onMenuClick }: NavbarProps) => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-6">
-            {mainNavItems.map((item) => (
+          <div className="hidden lg:flex items-center space-x-4">
+            {navItems.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
@@ -63,7 +61,6 @@ const Navbar = ({ onMenuClick }: NavbarProps) => {
                 {item.label}
               </Link>
             ))}
-            {/* More dropdown - handled by mobile menu on smaller screens */}
           </div>
 
           {/* Wallet Connect & Mobile menu */}
