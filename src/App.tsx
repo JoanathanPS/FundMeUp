@@ -13,6 +13,10 @@ import Leaderboard from './pages/Leaderboard'
 import Analytics from './pages/Analytics'
 import AIDemo from './pages/AIDemo'
 import VerificationDemo from './pages/VerificationDemo'
+import ApplyPage from './pages/ApplyPage'
+import DonatePage from './pages/DonatePage'
+import ImpactPage from './pages/ImpactPage'
+import NFTClaimPage from './pages/NFTClaimPage'
 
 // Components
 import Navbar from './components/Navbar'
@@ -52,6 +56,10 @@ function App() {
             <Route path="/analytics" element={<Analytics />} />
             <Route path="/ai-demo" element={<AIDemo />} />
             <Route path="/verification-demo" element={<VerificationDemo />} />
+            <Route path="/apply" element={<ApplyPage />} />
+            <Route path="/donate" element={<DonatePage />} />
+            <Route path="/impact" element={<ImpactPage />} />
+            <Route path="/nft-claim" element={<NFTClaimPage />} />
           </Routes>
         </motion.div>
       </main>
@@ -89,3 +97,4 @@ function App() {
 }
 
 export default App
+
