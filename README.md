@@ -182,26 +182,7 @@ Visit `/analytics` to see:
 - `GET /api/verification/status/:wallet` - Check verification status
 - `POST /api/verification/approve` - Approve verification
 
-## 🌍 Regional Data Integration
-
-FundMeUp integrates with regional government databases:
-
-### Kerala
-- 5 verified schools and universities
-- Government scholarship schemes
-- Performance score tracking
-
-### Tamil Nadu
-- IIT Madras integration
-- Anna University verification
-- Regional scheme eligibility
-
-### Maharashtra
-- IIT Bombay verification
-- Mumbai school database
-- State scholarship programs
-
-## 📈 Impact Metrics
+## 📈 Impact Metrics (Demo)
 
 - **1,247** Students Helped
 - **₹2.45M** Funds Raised
@@ -239,11 +220,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **OpenZeppelin** for secure smart contract libraries
 - **RainbowKit** for Web3 wallet integration
 
-## 📞 Support
-
-- **Documentation**: [docs.fundmeup.com](https://docs.fundmeup.com)
-- **Discord**: [discord.gg/fundmeup](https://discord.gg/fundmeup)
-- **Email**: support@fundmeup.com
 
 ## 🎯 Roadmap
 
