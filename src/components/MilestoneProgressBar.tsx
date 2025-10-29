@@ -179,3 +179,4 @@ const MilestoneProgressBar = ({
 }
 
 export default MilestoneProgressBar
+

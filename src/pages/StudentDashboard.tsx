@@ -24,22 +24,27 @@ import MilestoneProgressBar from '@/components/MilestoneProgressBar'
 import NFTBadgeDisplay from '@/components/NFTBadgeDisplay'
 import VerificationStatus from '@/components/VerificationStatus'
 import VerificationBadge from '@/components/VerificationBadge'
+import EditProfileModal from '@/components/EditProfileModal'
 import Loader from '@/components/Loader'
 import { Link } from 'react-router-dom'
 
 const StudentDashboard = () => {
   const { address, isConnected } = useWeb3()
   const [activeTab, setActiveTab] = useState('overview')
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false)
 
   // Mock data for demonstration
   const mockStudent = {
     id: '1',
+    name: 'Student Name',
+    email: 'student@example.com',
     wallet: address || '0x1234...5678',
     dream: 'Become a Quantum Computing Researcher',
     field: 'Computer Science',
     year: 3,
     country: 'India',
     institutionName: 'IIT Delhi',
+    bio: 'Passionate about quantum computing and advancing technology for the future.',
     verifiedByInstitution: true,
     introVideoCID: 'QmVideo123...',
     totalFunded: 2500,
@@ -180,7 +185,10 @@ const StudentDashboard = () => {
                 <Shield className="h-4 w-4" />
                 <span>Verify Email</span>
               </Link>
-              <button className="btn-outline flex items-center space-x-2">
+              <button 
+                onClick={() => setIsEditModalOpen(true)}
+                className="btn-outline flex items-center space-x-2"
+              >
                 <Edit className="h-4 w-4" />
                 <span>Edit Profile</span>
               </button>
@@ -424,6 +432,26 @@ const StudentDashboard = () => {
           )}
         </motion.div>
       </div>
+
+      {/* Edit Profile Modal */}
+      <EditProfileModal
+        isOpen={isEditModalOpen}
+        onClose={() => setIsEditModalOpen(false)}
+        currentProfile={{
+          name: mockStudent.name || '',
+          email: mockStudent.email || '',
+          field: mockStudent.field,
+          year: mockStudent.year,
+          country: mockStudent.country,
+          institution: mockStudent.institutionName,
+          bio: mockStudent.bio || '',
+          wallet: address || ''
+        }}
+        onSave={(profile) => {
+          console.log('Profile saved:', profile)
+          // Here you would update the backend or state
+        }}
+      />
     </div>
   )
 }

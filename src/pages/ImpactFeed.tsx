@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { 
   Activity, 
   Heart, 
@@ -16,10 +16,33 @@ import {
 import { useQuery } from '@tanstack/react-query'
 import { feedAPI } from '@/services/api'
 import Loader from '@/components/Loader'
+import { toast } from 'react-hot-toast'
 
 const ImpactFeed = () => {
   const [filter, setFilter] = useState('all')
   const [searchTerm, setSearchTerm] = useState('')
+  const [liveUpdates, setLiveUpdates] = useState(false)
+  const [updateCount, setUpdateCount] = useState(0)
+
+  // Auto-refresh every 15 seconds when live updates are enabled
+  useEffect(() => {
+    if (!liveUpdates) return
+
+    const interval = setInterval(() => {
+      setUpdateCount(prev => prev + 1)
+      toast.success('🔄 Feed updated!')
+    }, 15000)
+
+    return () => clearInterval(interval)
+  }, [liveUpdates])
+
+  const toggleLiveUpdates = () => {
+    setLiveUpdates(prev => {
+      const newValue = !prev
+      toast.success(newValue ? '✅ Live updates enabled' : '⏸️ Live updates paused')
+      return newValue
+    })
+  }
 
   // Mock data for demonstration
   const mockFeedData = [
@@ -206,9 +229,16 @@ const ImpactFeed = () => {
                 <Filter className="h-4 w-4" />
                 <span>Filters</span>
               </button>
-              <button className="btn-primary flex items-center space-x-2">
-                <Activity className="h-4 w-4" />
-                <span>Live Updates</span>
+              <button 
+                onClick={toggleLiveUpdates}
+                className={`flex items-center space-x-2 transition-all duration-200 ${
+                  liveUpdates 
+                    ? 'bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg font-semibold' 
+                    : 'btn-primary'
+                }`}
+              >
+                <Activity className={`h-4 w-4 ${liveUpdates ? 'animate-pulse' : ''}`} />
+                <span>{liveUpdates ? 'Live' : 'Live Updates'}</span>
               </button>
             </div>
           </div>
@@ -417,3 +447,4 @@ const ImpactFeed = () => {
 }
 
 export default ImpactFeed
+

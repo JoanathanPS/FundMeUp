@@ -1,7 +1,8 @@
 import { Link, useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { Menu, GraduationCap } from 'lucide-react'
+import { Menu } from 'lucide-react'
 import WalletConnectButton from './WalletConnectButton'
+import Logo from './Logo'
 
 interface NavbarProps {
   onMenuClick: () => void
@@ -35,22 +36,13 @@ const Navbar = ({ onMenuClick }: NavbarProps) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2 group">
+          <Link to="/" className="group">
             <motion.div
-              whileHover={{ rotate: 360 }}
-              transition={{ duration: 0.5 }}
-              className="p-2 bg-gradient-primary rounded-xl shadow-lg group-hover:shadow-glow"
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.2 }}
             >
-              <GraduationCap className="h-6 w-6 text-white" />
+              <Logo size="md" showSubtitle={true} />
             </motion.div>
-            <div className="flex flex-col">
-              <span className="text-xl font-bold text-gray-900 dark:text-white">
-                FundMeUp
-              </span>
-              <span className="text-xs text-gray-500 dark:text-gray-400 -mt-1">
-                Web3 Scholarships
-              </span>
-            </div>
           </Link>
 
           {/* Desktop Navigation */}
