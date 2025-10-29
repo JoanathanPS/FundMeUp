@@ -13,13 +13,17 @@ import {
 } from 'lucide-react'
 import { toast } from 'react-hot-toast'
 import { verificationAPI } from '@/services/api'
+import StateCityInstitutionSelector from '@/components/StateCityInstitutionSelector'
 
 const StudentVerification = () => {
   const navigate = useNavigate()
   const [step, setStep] = useState<'email' | 'otp'>('email')
   const [email, setEmail] = useState('')
   const [studentName, setStudentName] = useState('')
-  const [institution, setInstitution] = useState('')
+  const [selectedState, setSelectedState] = useState('')
+  const [selectedCity, setSelectedCity] = useState('')
+  const [selectedInstitution, setSelectedInstitution] = useState('')
+  const [customInstitution, setCustomInstitution] = useState('')
   const [otpCode, setOtpCode] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [showOtp, setShowOtp] = useState(false)
@@ -57,8 +61,13 @@ const StudentVerification = () => {
   const handleEmailSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
-    if (!email || !studentName || !institution) {
-      toast.error('Please fill in all fields')
+    // Get final institution name
+    const finalInstitution = selectedInstitution === 'unknown' || selectedInstitution === 'custom' 
+      ? customInstitution 
+      : selectedInstitution
+    
+    if (!email || !studentName || !selectedState || !selectedCity || !finalInstitution) {
+      toast.error('Please fill in all required fields')
       return
     }
 
@@ -72,7 +81,7 @@ const StudentVerification = () => {
       const response = await verificationAPI.requestEmailVerification({
         email,
         studentName,
-        institution
+        institution: `${finalInstitution}, ${selectedCity}, ${selectedState}`
       })
 
       if (response.success) {
@@ -129,10 +138,14 @@ const StudentVerification = () => {
     
     setIsLoading(true)
     try {
+      const finalInstitution = selectedInstitution === 'unknown' || selectedInstitution === 'custom' 
+        ? customInstitution 
+        : selectedInstitution
+
       const response = await verificationAPI.requestEmailVerification({
         email,
         studentName,
-        institution
+        institution: finalInstitution
       })
 
       if (response.success) {
@@ -228,19 +241,17 @@ const StudentVerification = () => {
                   />
                 </div>
 
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    Institution
-                  </label>
-                  <input
-                    type="text"
-                    value={institution}
-                    onChange={(e) => setInstitution(e.target.value)}
-                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
-                    placeholder="Enter your college/university name"
-                    required
-                  />
-                </div>
+                {/* State, City, and Institution Selector */}
+                <StateCityInstitutionSelector
+                  selectedState={selectedState}
+                  onStateChange={setSelectedState}
+                  selectedCity={selectedCity}
+                  onCityChange={setSelectedCity}
+                  selectedInstitution={selectedInstitution}
+                  onInstitutionChange={setSelectedInstitution}
+                  customInstitution={customInstitution}
+                  onCustomInstitutionChange={setCustomInstitution}
+                />
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
