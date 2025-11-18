@@ -10,6 +10,7 @@ FundMeUp brings together modern verification systems, regional data intelligence
 **https://fundmeup.vercel.app/**
 
 ---
+<img width="1920" height="919" alt="image" src="https://github.com/user-attachments/assets/979ddc84-679d-4612-a12a-b377710d54cc" />
 
 ## 🌍 Overview
 
