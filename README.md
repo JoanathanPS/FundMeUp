@@ -1,105 +1,139 @@
-# FundMeUp - AI-Powered Web3 Scholarships
+# FundMeUp – AI-Enhanced Web3 Scholarship Platform
 
-**"Funding Futures, One Verified Milestone at a Time"**
+**Transparent, verifiable, and milestone-based student funding.**
 
-FundMeUp revolutionizes education funding by combining AI intelligence, regional data integration, and blockchain transparency to ensure every student's progress is verified before funds are released.
+FundMeUp brings together modern verification systems, regional data intelligence, and blockchain technology to create a scholarship ecosystem where students, donors, and institutions can participate with full trust and transparency.
 
-## 🌟 The Problem
+---
 
-Traditional scholarship systems suffer from:
-- **Lack of transparency** in fund distribution
-- **High administrative overhead** (20-30% fees)
-- **No accountability** for fund utilization
-- **Manual verification** prone to errors and bias
+### 🚀 Live Deployment  
+**https://fundmeup.vercel.app/**
 
-**₹50,000 crores** in scholarships are distributed annually in India, yet **40%** of students never receive the funding they deserve.
+---
 
-## 🚀 Our Solution
+## 🌍 Overview
 
-FundMeUp combines three powerful technologies:
+Traditional scholarship programs struggle with:
 
-### 1. **3-Step Verification Process**
-- **Email Verification**: Twilio-powered college email validation
-- **AI Analysis**: Advanced AI analyzes documents with 95% accuracy
-- **Regional Check**: Cross-references with government databases
-- **Combined Security**: All three steps must pass for full verification
+- Limited transparency in fund distribution  
+- High administrative overhead  
+- Manual verification processes that are slow and error-prone  
+- Minimal insight into whether funds reach deserving students  
 
-### 2. **Regional Intelligence**
-- Integrated with local government datasets
-- Verifies student eligibility and institutional credibility
-- Cross-references with Kerala, Tamil Nadu, and Maharashtra databases
-- Ensures compliance with regional scholarship schemes
+In India alone, over ₹50,000 crore in scholarships are disbursed annually—yet a significant portion never reaches the intended recipients due to inefficiencies.
 
-### 3. **Blockchain Transparency**
-- Every transaction recorded on-chain
-- Complete transparency for all stakeholders
-- Milestone-based fund release system
-- Immutable proof of student progress
+**FundMeUp** provides a modern, verifiable, and transparent approach to solving this problem.
 
-## ✨ Key Features
+---
+
+## 🔍 What FundMeUp Does
+
+FundMeUp ensures that scholarship disbursements are:
+
+- **Accurately verified** through a multi-step process  
+- **Released only after verified student progress**  
+- **Fully traceable** through blockchain logging  
+- **Fair and standardized**, reducing manual bias  
+
+---
+
+## 🧩 Core Components
+
+### 1. Verification Workflow  
+A structured verification pipeline:
+
+- **Email Verification:** Confirms institutional email identity  
+- **Document Verification:** AI-assisted review of student documents  
+- **Regional Data Check:** Matches against state-level education datasets  
+
+All three steps must succeed for a student to achieve full verification status.
+
+### 2. Regional Data Intelligence  
+The platform integrates with real educational datasets to validate:
+
+- Student eligibility  
+- Institution authenticity  
+- Compliance with state scholarship criteria  
+
+(Current support: Kerala, Tamil Nadu, Maharashtra)
+
+### 3. Blockchain-Based Funding  
+Blockchain enables:
+
+- Transparent, immutable transaction logs  
+- Milestone-based fund release  
+- Soulbound NFT identity for verified students  
+- Real-time donor impact tracking  
+
+---
+
+## ⭐ Key Features
 
 ### For Students
-- **3-Step Verification**: Email + AI + Regional data verification
-- **Email Verification**: Twilio-powered college email validation
-- **Smart Verification**: AI + Regional data verification
-- **Milestone-Based Funding**: Funds released only after verified progress
-- **Soulbound NFT Identity**: Portable, verified student credentials
-- **Real-time Feedback**: AI provides improvement suggestions
-- **Transparent Process**: See exactly why decisions are made
+- Multi-layer verification process  
+- Milestone-based funding  
+- AI-driven document analysis  
+- Transparent progress tracking  
+- NFT identity badge  
 
 ### For Donors
-- **Impact Tracking**: See exactly where your funds go
-- **AI Recommendations**: Get suggestions for students to fund
-- **Impact Tokens**: Earn rewards for contributions
-- **Real-time Analytics**: Track your impact metrics
-- **Complete Transparency**: All transactions on-chain
+- Real-time visibility into fund usage  
+- Platform-wide analytics  
+- Impact scoring and tracking  
+- Automated recommendations  
 
 ### For Institutions
-- **Automated Verification**: Reduce manual workload
-- **Regional Integration**: Seamless government database sync
-- **Quality Assurance**: AI ensures document standards
-- **Analytics Dashboard**: Track student success rates
+- Automated verification workflows  
+- Reduced administrative burden  
+- Dashboard for student monitoring  
+- Regional dataset integration  
+
+---
 
 ## 🛠️ Tech Stack
 
-### Frontend
-- **React 18** with TypeScript
-- **TailwindCSS** for styling
-- **Framer Motion** for animations
-- **Wagmi + RainbowKit** for Web3 integration
-- **React Query** for data fetching
+### **Frontend**
+- React (TypeScript)  
+- TailwindCSS  
+- Framer Motion  
+- Wagmi + RainbowKit  
+- React Query  
 
-### Backend
-- **Node.js** with Express
-- **MongoDB** for data storage
-- **Groq/Llama 3.1** for AI analysis
-- **IPFS** for document storage
-- **JWT** for authentication
+### **Backend**
+- Node.js (Express)  
+- MongoDB  
+- Groq / Llama 3.1 for AI analysis  
+- IPFS for document storage  
+- JWT authentication  
 
-### Blockchain
-- **Solidity** smart contracts
-- **Hardhat** for development
-- **Ethers.js** for Web3 integration
-- **Soulbound NFTs** for student identity
-- **Impact Tokens** for donor rewards
+### **Blockchain**
+- Solidity Smart Contracts  
+- Hardhat  
+- Ethers.js  
+- Soulbound NFTs  
+- On-chain milestone system  
 
-## 🚀 Quick Start
+---
 
-### Prerequisites
-- Node.js 18+
-- MongoDB
-- MetaMask wallet
-- Groq API key (for AI features)
+## 🚀 Getting Started
 
-### Installation
+### **Prerequisites**
+- Node.js 18+  
+- MongoDB  
+- MetaMask (or any EVM-compatible wallet)  
+- Groq API key (for AI document analysis)  
 
-1. **Clone the repository**
+---
+
+## 🔧 Installation
+
+### Clone the repository:
 ```bash
-git clone https://github.com/your-username/fundmeup.git
-cd fundmeup
+git clone https://github.com/your-username/FundMeUp.git
+cd FundMeUp
 ```
 
-2. **Install dependencies**
+### Install dependencies:
 ```bash
 # Backend
 cd backend
@@ -110,133 +144,122 @@ cd ../fundmeup-frontend
 npm install
 ```
 
-3. **Environment Setup**
-```bash
-# Backend .env
+---
+
+## ⚙️ Environment Variables
+
+### Backend `.env`
+```env
 MONGODB_URI=mongodb://localhost:27017/fundmeup
 GROQ_API_KEY=your_groq_api_key
 RPC_URL=https://sepolia.infura.io/v3/your_project_id
 PRIVATE_KEY=your_private_key
+```
 
-# Frontend .env
+### Frontend `.env`
+```env
 VITE_API_URL=http://localhost:5000
 VITE_WALLETCONNECT_PROJECT_ID=your_project_id
 ```
 
-4. **Start the application**
-```bash
-# Terminal 1: Backend
-cd backend
-npm run node  # Start Hardhat node
-npm run deploy:v3:local  # Deploy contracts
-node seed/seedDataV2.js  # Seed data
-npm run dev  # Start backend (port 5000)
+---
 
-# Terminal 2: Frontend
-cd fundmeup-frontend
-npm run dev  # Start frontend (port 5173)
+## ▶️ Running the Project
+
+### Backend + Blockchain
+```bash
+cd backend
+npm run node                 # Start Hardhat node
+npm run deploy:v3:local      # Deploy smart contracts
+node seed/seedDataV2.js      # Seed database (optional)
+npm run dev                  # Start backend on port 5000
 ```
 
-## 📊 Demo Features
-
-### AI Verification Demo
-Visit `/ai-demo` to see our AI verification system in action:
-- **Approved Case**: High confidence, verified institution
-- **Review Case**: Medium confidence, needs verification
-- **Rejected Case**: High risk, suspicious document
-
-### Analytics Dashboard
-Visit `/analytics` to see:
-- Global impact metrics
-- Funding trends over time
-- Geographic distribution
-- Top donors and students
-
-### Student Dashboard
-- Milestone timeline with AI verification
-- Regional data integration status
-- Funding progress tracking
-- Soulbound NFT display
-
-## 🔧 API Endpoints
-
-### AI Verification
-- `POST /api/ai/v2/analyze-proof` - Analyze student documents
-- `POST /api/ai/v2/verify-eligibility` - Verify student eligibility
-- `POST /api/ai/v2/generate-encouragement` - Generate AI messages
-
-### Email Verification
-- `POST /api/verification/v3/request-email` - Request email verification
-- `POST /api/verification/v3/verify-email` - Verify OTP code
-- `GET /api/verification/v3/status/:id` - Check verification status
-- `POST /api/verification/v3/complete` - Complete full verification
-
-### Analytics
-- `GET /api/analytics/global` - Platform statistics
-- `GET /api/analytics/donor/:wallet` - Donor impact metrics
-- `GET /api/analytics/heatmap` - Geographic distribution
-- `GET /api/analytics/trends` - Funding trends
-
-### Verification
-- `POST /api/verification/request` - Student verification request
-- `GET /api/verification/status/:wallet` - Check verification status
-- `POST /api/verification/approve` - Approve verification
-
-## 📈 Impact Metrics (Demo)
-
-- **1,247** Students Helped
-- **₹2.45M** Funds Raised
-- **87.5%** Success Rate
-- **156** Active Donors
-- **2,993** Verified Milestones
-
-## 🔒 Security Features
-
-- **Smart Contract Audits**: All contracts audited
-- **AI Fraud Detection**: Advanced pattern recognition
-- **Regional Verification**: Government database integration
-- **Encrypted Storage**: IPFS with encryption
-- **Non-transferable NFTs**: Soulbound student identity
-
-## 🤝 Contributing
-
-We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
-
-### Development Setup
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests if applicable
-5. Submit a pull request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- **Groq** for providing AI inference capabilities
-- **IPFS** for decentralized storage
-- **OpenZeppelin** for secure smart contract libraries
-- **RainbowKit** for Web3 wallet integration
-
-
-## 🎯 Roadmap
-
-### Q1 2024
-- [ ] Multi-language support
-- [ ] Mobile app development
-- [ ] Advanced AI models
-- [ ] More regional integrations
-
-### Q2 2024
-- [ ] DeFi integration
-- [ ] Cross-chain support
-- [ ] Institutional partnerships
-- [ ] Advanced analytics
+### Frontend
+```bash
+cd fundmeup-frontend
+npm run dev                  # Start frontend on port 5173
+```
 
 ---
 
-**Built with ❤️ for the future of education**
+## 📊 Demo Pages
 
-*FundMeUp - Where AI meets blockchain to fund the next generation of innovators.*
+### **AI Verification Demo**  
+`/ai-demo` – document analysis scenarios.
+
+### **Analytics Dashboard**  
+`/analytics` – global platform metrics:  
+- Funding trends  
+- Geographic distribution  
+- Student/donor insights  
+
+### **Student Dashboard**  
+- Milestone progress  
+- Verification status  
+- NFT Identity  
+- Funding timeline  
+
+---
+
+## 🔌 API Endpoints (Summary)
+
+### AI
+- `POST /api/ai/v2/analyze-proof`  
+- `POST /api/ai/v2/verify-eligibility`  
+- `POST /api/ai/v2/generate-encouragement`  
+
+### Verification
+- `POST /api/verification/request`  
+- `GET /api/verification/status/:wallet`  
+- `POST /api/verification/approve`  
+
+### Email
+- `POST /api/verification/v3/request-email`  
+- `POST /api/verification/v3/verify-email`  
+- `GET /api/verification/v3/status/:id`  
+
+### Analytics
+- `GET /api/analytics/global`  
+- `GET /api/analytics/donor/:wallet`  
+- `GET /api/analytics/heatmap`  
+- `GET /api/analytics/trends`  
+
+---
+
+## 🔒 Security
+
+- Audited smart contracts  
+- AI-based fraud detection  
+- Encrypted document storage (IPFS)  
+- Immutable on-chain tracking  
+- Soulbound identity NFTs  
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions!  
+Please read the **CONTRIBUTING.md** before opening a pull request.
+
+---
+
+## 📄 License
+
+Licensed under the **MIT License**.
+
+---
+
+## 🌱 Roadmap
+
+### Upcoming
+- Multi-language support  
+- Mobile application  
+- Additional state-level integrations  
+- Expanded analytics  
+- Cross-chain features  
+- Donor-side DeFi integrations  
+
+---
+
+**FundMeUp — A transparent, reliable, and modern approach to education funding.**
