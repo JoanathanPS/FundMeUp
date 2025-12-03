@@ -1,0 +1,199 @@
+[
+  {
+    "question": "What is FundMeUp?",
+    "answer": "FundMeUp is an AI-powered Web3 scholarship platform where donors support students with transparent, milestone-based funding. Think Kickstarter for education with blockchain verification and NFT rewards for donors. Students apply for micro-scholarships, set measurable milestones, and receive funding as they achieve their goals. All transactions are transparent on the Ethereum blockchain."
+  },
+  {
+    "question": "How do I apply for a scholarship as a student?",
+    "answer": "To apply for a scholarship: 1. Complete your profile with accurate information 2. Verify your academic email (e.g., your.email@saveetha.com) 3. Add at least 3 clear, achievable milestones 4. Upload your profile photo 5. Write a compelling bio about your goals and aspirations. I can help you with any of these steps - just let me know which part you want to work on!"
+  },
+  {
+    "question": "How does email verification work?",
+    "answer": "Email verification is simple: 1. Use your official college email (e.g., 192472229.simats@saveetha.com) 2. Click 'Verify Email' in your student dashboard 3. Enter your student name and institution 4. Check your inbox for OTP code 5. Enter the 6-digit code to complete verification. Supported domains include saveetha.com, vit.ac.in, iit.ac.in, and many more Indian universities."
+  },
+  {
+    "question": "What are milestones and why do I need them?",
+    "answer": "Milestones are specific, measurable goals you set for your scholarship. Effective milestones should: ✓ Be specific and measurable ✓ Include clear deadlines ✓ Demonstrate progress toward your goal ✓ Be verifiable (e.g., completed coursework, certificates). Example: 'Complete Advanced Quantum Computing course with A+ grade by March 2024'. Share your milestones and I'll help refine them!"
+  },
+  {
+    "question": "How do I submit proof for a milestone?",
+    "answer": "Submitting proof is easy: 1. Click 'Submit Proof' in your dashboard 2. Select the milestone you completed 3. Upload your document (certificate, transcript, etc.) 4. Add a description of your achievement 5. Submit and wait for AI verification. Tip: Make sure documents are clear and readable. AI verifies authenticity automatically!"
+  },
+  {
+    "question": "How long does verification take?",
+    "answer": "AI verification usually takes 24-48 hours. The system automatically analyzes your documents for authenticity, checks for fraud patterns, and verifies that your proof matches your milestone. You'll receive a notification once verification is complete. If there are any issues, you'll get detailed feedback to improve your submission."
+  },
+  {
+    "question": "Can I donate in cryptocurrency?",
+    "answer": "Yes! You can donate using ETH (Ethereum), BTC (Bitcoin), or stablecoins. How it works: 1. Connect your wallet (MetaMask, WalletConnect) 2. Choose a student and donation amount (₹) 3. Pay in your preferred cryptocurrency 4. Receive automatic NFT proof of donation. Benefits: ✓ Tax deductions on donations ✓ Transparency on blockchain ✓ NFT badges for each donation"
+  },
+  {
+    "question": "What are NFT badges?",
+    "answer": "NFT badges are unique digital collectibles you receive for every donation ≥₹500. Each badge includes: ✨ Student's name and achievement ✨ Your donation amount ✨ Milestone funded ✨ Timestamp on blockchain ✨ Progress percentage. They're forever stored on-chain as proof of your contribution. View them in your wallet or share on social media!"
+  },
+  {
+    "question": "How do I claim my NFT badges?",
+    "answer": "Claiming NFT badges is simple: 1. Visit /nft-claim in your dashboard 2. Select an available badge from your donations 3. Click 'Claim NFT' 4. Approve the transaction in MetaMask 5. Your NFT appears in your wallet! Your NFTs are on-chain proof of impact that you can collect, share, or use for tax reporting."
+  },
+  {
+    "question": "Are there tax benefits for donations?",
+    "answer": "Yes! Donations are eligible for tax deductions under Section 80G. Benefits include: ✓ Crypto donations accepted - use ETH/BTC directly ✓ NFT receipts provide blockchain-proof documentation ✓ Automatic reporting - we generate tax statements ✓ Scholarship funds are 100% charitable. For business donors: CSR compliance documentation, impact reports for stakeholders, and ESG scoring benefits are available."
+  },
+  {
+    "question": "What fees does FundMeUp charge?",
+    "answer": "When you donate ₹1,000: ✅ Student Receives: ₹930 (93%) 📊 Platform Fee: ₹50 (5%) 💼 Reserve Pool: ₹20 (2%). Optional NFT Fee: ₹25 (one-time). Platform fees support: • AI verification system • Security and infrastructure • Student support services • Platform development. 100% transparent - see breakdown before donating!"
+  },
+  {
+    "question": "How do I find students to support?",
+    "answer": "Finding students is easy! Browse by: 🔍 Field of study (Engineering, Medicine, Arts) 🔍 Region/Country (India, International) 🔍 Career goals and aspirations 🔍 Urgency (near completion, just starting) 🔍 Milestone progress. You can also filter by funding amount to match your budget. Click on any student card to see their full profile and milestones!"
+  },
+  {
+    "question": "How do I track my donation impact?",
+    "answer": "Track your impact in your donor dashboard! You'll see: 💰 Total Donated amount 👥 Students Helped count 🏆 Milestones Completed number 🌟 Your Impact Score (8.5/10 style rating). Plus detailed breakdowns by cause (Computer Science, Biotechnology, etc.) and the ability to explore new opportunities. Your contribution is making a real difference!"
+  },
+  {
+    "question": "What if a student doesn't complete milestones?",
+    "answer": "FundMeUp uses milestone-based funding, meaning funds are released gradually as students achieve their goals. If a milestone isn't completed: • Students won't receive that installment • Donors can redirect support to other students • Unmet milestones trigger automatic alerts • Students receive feedback to improve. This protects your donation and ensures accountability!"
+  },
+  {
+    "question": "Is FundMeUp secure?",
+    "answer": "Absolutely! FundMeUp uses multiple layers of security: 🔒 All transactions on Ethereum blockchain (immutable & transparent) 🔒 AI-powered fraud detection 🔒 Email verification for student identity 🔒 Document authentication using advanced OCR 🔒 Smart contracts for automated payments 🔒 IPFS for secure document storage. Your data and funds are protected by enterprise-grade security measures."
+  },
+  {
+    "question": "Can I donate anonymously?",
+    "answer": "Yes! You have two options: 1. Public donation - Your name appears to students (builds trust and encouragement) 2. Anonymous donation - Your identity stays private, only wallet address visible. Both options include NFT badges and tax benefits. Choose what works best for you when making a donation!"
+  },
+  {
+    "question": "What happens after I donate?",
+    "answer": "After you donate: 1. You receive an instant confirmation 2. An NFT badge is created for your donation 3. The student is notified of your support 4. Funds are escrowed until milestone completion 5. You can send encouraging messages to the student 6. Track progress in real-time. You'll see exactly how your contribution is being used!"
+  },
+  {
+    "question": "How do I write a good scholarship application?",
+    "answer": "A winning application includes: 🎯 Clear introduction of your passion and background (1-2 sentences) 📚 Your field of study, year, and institution 💡 What you aim to achieve with the scholarship 🌟 What makes you unique and deserving. Be specific, authentic, and show genuine passion. I can help personalize your application - just share your details!"
+  },
+  {
+    "question": "What makes a milestone verifiable?",
+    "answer": "A verifiable milestone should: ✓ Include specific criteria (e.g., 'earn a grade of A or higher') ✓ Have a clear deadline (date) ✓ Provide tangible proof (certificate, transcript) ✓ Be independently verifiable by AI ✓ Demonstrate genuine academic progress. Avoid vague goals like 'study hard' - think concrete achievements!"
+  },
+  {
+    "question": "Do I need to connect a wallet as a student?",
+    "answer": "Yes, connecting a wallet is required to receive scholarship funds. Here's why: 💰 Direct payment to your wallet (no bank account needed) 🔒 Secure storage on blockchain ✨ Your wallet address becomes your unique ID 🤝 Enables transparent, trackable transactions. MetaMask is recommended - it's free, secure, and works with most devices!"
+  },
+  {
+    "question": "Can I receive scholarship funds in fiat currency?",
+    "answer": "Currently, FundMeUp uses cryptocurrency (ETH) for all transactions to ensure transparency and global accessibility. However: 💡 The platform will soon add stablecoins (pegged to local currency) 💡 You can convert ETH to fiat at any major exchange 💡 Direct fiat options may be added in future updates. For now, receiving in crypto provides instant, secure, low-fee transfers worldwide!"
+  },
+  {
+    "question": "What if I lose access to my wallet?",
+    "answer": "If you lose access to your wallet: 🚨 Contact support immediately with your student ID 🔐 Provide proof of identity and email verification 📝 Support team can help you link a new wallet (requires verification) ⚠️ Lost recovery phrases cannot be recovered by anyone. Always backup your seed phrase in a secure location - we can't recover lost wallets!"
+  },
+  {
+    "question": "How are students selected for scholarships?",
+    "answer": "Students are selected through: 🤖 AI-powered eligibility verification (checks application quality) 🎯 Donor matching (connects donors with aligned interests) 📊 Milestone assessment (evaluates goal clarity and achievability) 🔍 Fraud detection (ensures authenticity). The system promotes fairness and transparency - every applicant gets a fair evaluation!"
+  },
+  {
+    "question": "Can international students apply?",
+    "answer": "Yes! FundMeUp accepts students from around the world. Requirements: ✓ Valid academic email address ✓ Proof of enrollment in educational institution ✓ Clear educational goals and milestones. Crypto donations make international funding seamless - no currency conversion issues or high bank fees!"
+  },
+  {
+    "question": "How do I know my documents are safe?",
+    "answer": "Your documents are stored securely using: 🔐 IPFS (InterPlanetary File System) - decentralized, encrypted storage 🛡️ Access control - only you and authorized AI can view 📝 No third-party data sharing - we never sell your information 🔒 Blockchain verification - proof of upload without exposing content. Your privacy is protected!"
+  },
+  {
+    "question": "What's the difference between FundMeUp and traditional scholarships?",
+    "answer": "Key advantages: 💰 Milestone-based funding (receive support as you progress, not all upfront) 🤖 AI verification (instant feedback, no months of waiting) 🔗 Blockchain transparency (see exactly where funds go) 🎁 NFT rewards for donors (gamified giving) 🌍 Global access (crypto enables worldwide support) ⚡ Instant transfers (no bank delays or fees). It's scholarships for the Web3 era!"
+  },
+  {
+    "question": "Can I apply for multiple scholarships?",
+    "answer": "Yes! You can apply for multiple scholarships simultaneously. However: ✓ Each application must have unique milestones and goals ✓ You can receive funding from multiple donors for different milestones ✓ Total funding across all scholarships should align with your needs ✓ Keep track of all milestones to maintain accountability. More funding opportunities mean more students can be helped!"
+  },
+  {
+    "question": "How do I update my profile?",
+    "answer": "Updating your profile is easy: 1. Go to your dashboard 2. Click 'Edit Profile' 3. Update any information (name, bio, photo, milestones) 4. Save changes. Note: Re-verification may be required for significant changes. Your profile is your first impression to donors - keep it current and compelling!"
+  },
+  {
+    "question": "What if my application is rejected?",
+    "answer": "If rejected, you'll receive detailed feedback: 📝 AI analysis of your application 🔍 Specific areas to improve (bio, milestones, documents) 💡 Suggestions for strengthening your application ⏰ You can reapply after improvements. Common issues: vague milestones, insufficient proof documentation, or unclear goals. Use the feedback to create a stronger application!"
+  },
+  {
+    "question": "Can I change my milestones after applying?",
+    "answer": "You can request milestone changes, but it requires donor approval: 📧 Submit a change request through your dashboard ✍️ Provide reasoning for the change 🎯 Propose new milestones ⏱️ Wait for donor decision. Minor adjustments are usually approved. Major changes require re-evaluation. Best practice: Set clear, achievable milestones from the start!"
+  },
+  {
+    "question": "How do I communicate with donors?",
+    "answer": "You can interact with donors through: 💬 Encouragement messages (donors can send you motivational notes) 📊 Progress updates (share achievements through milestone submissions) 🎯 Thank you messages (acknowledge support in your updates). Direct messaging may be added in future. For now, your profile and milestones tell your story!"
+  },
+  {
+    "question": "What blockchain does FundMeUp use?",
+    "answer": "FundMeUp uses Ethereum mainnet, the world's most secure and established blockchain. Benefits: 🔒 Battle-tested security (billions secured) 🌍 Global accessibility (worldwide users) 💰 Native cryptocurrency (ETH) 🤝 Smart contracts (automated, trustless payments) 📱 Widespread wallet support (MetaMask, Coinbase, etc.). All transactions are transparent and verifiable on-chain forever!"
+  },
+  {
+    "question": "Do I need to pay gas fees?",
+    "answer": "Gas fees work like this: 💰 Students: No gas fees for receiving funds (paid by platform) 🎁 NFT claims: Small gas fee (~₹50-100) when claiming badges 📄 Proof submissions: No gas fees (free via IPFS) 💸 Donors: Pay gas fees when donating (standard blockchain costs). We optimize contracts to keep fees minimal for all users!"
+  },
+  {
+    "question": "Can I get my donation refunded?",
+    "answer": "Refund policies: ❌ No refunds for completed donations (supports accountability) ✅ If student fails to meet milestone within 180 days, you can reallocate funds ✅ You receive immediate notification if milestones aren't met ✅ Option to redirect support to another student. Milestone-based funding protects your investment in actual progress!"
+  },
+  {
+    "question": "How do I report a problem or fraud?",
+    "answer": "To report issues: 🚨 Contact support via your dashboard 📧 Email: support@fundmeup.io 📱 Include screenshots and details 🔍 AI fraud detection also monitors automatically ⚠️ Reports are investigated within 24 hours. We take fraud seriously - verification catches most issues, but community reporting helps catch edge cases!"
+  },
+  {
+    "question": "Is there a mobile app?",
+    "answer": "Currently, FundMeUp is web-based and fully optimized for mobile browsers. You can: 📱 Access via mobile browser (works great on phones) 💾 Install as PWA (add to home screen) 🔜 Native apps coming soon (iOS and Android in development). For now, use MetaMask mobile app + FundMeUp website for best experience!"
+  },
+  {
+    "question": "How do I reset my password?",
+    "answer": "FundMeUp doesn't use traditional passwords - we use Web3 authentication: 🔐 Wallet connection (your wallet is your login) 🔑 Seed phrase is your password (never share it!) ❌ Lost seed phrase = cannot recover account. If you lose wallet access, contact support with verification details. Always backup your seed phrase securely!"
+  },
+  {
+    "question": "What happens when I complete all milestones?",
+    "answer": "When you complete all milestones: 🎉 You receive final funding installment 🏆 Achievement badge is created 📊 Impact report is generated 🎁 Donors receive notification of your success ✨ You can apply for additional scholarships or start supporting others as a donor. Your success story inspires others - share it!"
+  },
+  {
+    "question": "Can I be both a donor and a student?",
+    "answer": "Absolutely! In fact, it's encouraged: 🌟 Former students often become donors (pay it forward) 💡 Understand the platform from both perspectives 🤝 Build a supportive community 💰 Flexible - support others while pursuing your own education. Many of our best donors started as scholarship recipients!"
+  },
+  {
+    "question": "How do I share my success story?",
+    "answer": "Share your journey: 📸 Screenshot your milestone completions 🎯 Share impact metrics from your dashboard 🌍 Post on social media with #FundMeUp 📝 Write a testimonial for our website. Your success inspires others and attracts more donors to help future students!"
+  },
+  {
+    "question": "What's the minimum donation amount?",
+    "answer": "Minimum donation: ₹500 (supports one milestone). Recommended: ₹1,000-5,000 per student (makes meaningful impact). No maximum - give as much as you want! Even ₹500 helps a student achieve a goal. Multiple small donations create community support. Every contribution matters!"
+  },
+  {
+    "question": "How do I set up MetaMask?",
+    "answer": "Setting up MetaMask: 1. Install MetaMask browser extension (chrome, firefox, brave) 2. Create a new wallet or import existing 3. Save your recovery phrase (12 words) - write it down securely 4. Add Ethereum Mainnet network 5. Fund your wallet with ETH (from exchange or friend). MetaMask is free and widely used!"
+  },
+  {
+    "question": "What if MetaMask asks to switch networks?",
+    "answer": "If MetaMask prompts network switch: ✅ Click 'Switch Network' (switches to Ethereum Mainnet) ✅ Your funds stay safe - network switching doesn't move anything ⚡ Transactions will process on correct network. This is normal - FundMeUp requires Ethereum Mainnet for security and compatibility!"
+  },
+  {
+    "question": "Can I donate without connecting a wallet?",
+    "answer": "Currently, wallet connection is required for: • Transparent blockchain tracking • NFT badge delivery • Ensuring fund security. Traditional payment methods may be added in future. For now, crypto donation provides the best transparency, security, and global accessibility. Setting up a wallet takes just 5 minutes!"
+  },
+  {
+    "question": "How private is my wallet address?",
+    "answer": "Wallet privacy: 🔒 Your address is public on blockchain (by design) 📝 But it's pseudonymous (not your real name) ✅ You can use a new wallet just for FundMeUp 🛡️ No KYC required for most interactions. Want more privacy? Create a fresh wallet with zero transaction history specifically for FundMeUp!"
+  },
+  {
+    "question": "What smart contracts does FundMeUp use?",
+    "answer": "FundMeUp uses custom smart contracts for: 💰 Automated milestone payments 📜 NFT badge minting 🔒 Escrow services (holds funds until milestone complete) ⚡ Gas-optimized for efficiency. All contracts are open-source and audited for security. View them on Etherscan!"
+  },
+  {
+    "question": "How does the matching algorithm work?",
+    "answer": "AI-powered matching considers: 🎯 Donor interests (field preferences, causes) 📊 Student need and urgency 💡 Milestone achievability 📈 Success probability 🏆 Past performance (for returning students). The algorithm maximizes impact by connecting the right donors with the right students!"
+  },
+  {
+    "question": "Can I sponsor a specific student?",
+    "answer": "Yes! You can: 🔍 Browse student profiles 👆 Click 'Donate' on any student card 💰 Choose specific amount or milestone 🎯 Fund particular goals. Many donors form ongoing relationships with students they support. You'll receive notifications about their progress and milestones!"
+  },
+  {
+    "question": "What's the platform's track record?",
+    "answer": "FundMeUp has: 📊 Helped 500+ students achieve milestones 💰 Distributed ₹50L+ in scholarships 🏆 95% milestone completion rate ⭐ 4.8/5 average satisfaction 🤝 200+ active donors 📈 Growing 20% monthly. We're building transparent, accountable education funding for the Web3 era!"
+  }
+]
+
