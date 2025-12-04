@@ -1,7 +1,7 @@
 # Dependencies
 node_modules/
 backend/node_modules/
-fundmeup-frontend/node_modules/
+frontend/node_modules/
 tailadmin-react---tailwind-react-dashboard-template/**/node_modules/
 .pnp
 .pnp.js
@@ -13,9 +13,10 @@ tailadmin-react---tailwind-react-dashboard-template/**/node_modules/
 .env.test.local
 .env.production.local
 backend/.env
-fundmeup-frontend/.env
+frontend/.env
 *.env
 .env*.local
+env
 
 # Build outputs
 dist/
@@ -23,6 +24,7 @@ dist-ssr
 build/
 out/
 *.local
+frontend/dist/
 
 # Logs
 logs
@@ -104,13 +106,15 @@ public
 tmp/
 temp/
 
-# Recovery scripts
-*.bat
+# Recovery scripts (keeping essential .bat files)
 RECOVERY_SCRIPT.bat
 
 # Template files
 tailadmin-react---tailwind-react-dashboard-template/
 mailgo-main/
+
+# Duplicate/orphaned files (to be removed)
+src/
 
 # Git
 .git/

@@ -105,7 +105,7 @@ async function main() {
   console.log("1. Update .env with contract addresses");
   console.log("2. Run: node backend/seed/seedDataV2.js");
   console.log("3. Start backend: npm run dev");
-  console.log("4. Start frontend: cd fundmeup-frontend && npm run dev\n");
+  console.log("4. Start frontend: cd frontend && npm run dev\n");
 }
 
 main()
