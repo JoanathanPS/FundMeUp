@@ -12,10 +12,17 @@
 
 **Important Settings:**
 - **Framework Preset**: `Vite` (auto-detected)
-- **Root Directory**: `frontend` ⚠️ **CRITICAL**
-- **Build Command**: `npm run build`
-- **Output Directory**: `dist`
-- **Install Command**: `npm install`
+- **Root Directory**: `frontend` ⚠️ **CRITICAL - Set this in Vercel project settings!**
+- **Build Command**: `npm run build` (auto-detected)
+- **Output Directory**: `dist` (auto-detected)
+- **Install Command**: `npm install` (auto-detected)
+
+**How to Set Root Directory:**
+1. After importing the project, click **"Settings"** tab
+2. Go to **"General"** → **"Root Directory"**
+3. Click **"Edit"** and select `frontend`
+4. Click **"Save"**
+5. Go back to **"Deployments"** and redeploy
 
 ### 3. Add Environment Variables
 
