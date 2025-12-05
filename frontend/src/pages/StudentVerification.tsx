@@ -84,12 +84,13 @@ const StudentVerification = () => {
         institution: `${finalInstitution}, ${selectedCity}, ${selectedState}`
       })
 
-      if (response.success) {
-        setVerificationId(response.verificationId)
+      const data = response.data || response
+      if (data.success) {
+        setVerificationId(data.verificationId)
         setStep('otp')
         toast.success('📧 Verification code sent to your email!')
       } else {
-        toast.error(response.message || 'Failed to send verification code')
+        toast.error(data.message || 'Failed to send verification code')
       }
     } catch (error) {
       console.error('Email verification request failed:', error)
@@ -114,7 +115,8 @@ const StudentVerification = () => {
         code: otpCode
       })
 
-      if (response.success) {
+      const data = response.data || response
+      if (data.success) {
         toast.success('🎉 Email verified successfully!')
         navigate('/student', { 
           state: { 
@@ -123,7 +125,7 @@ const StudentVerification = () => {
           }
         })
       } else {
-        toast.error(response.message || 'Invalid verification code')
+        toast.error(data.message || 'Invalid verification code')
       }
     } catch (error) {
       console.error('OTP verification failed:', error)
@@ -148,7 +150,8 @@ const StudentVerification = () => {
         institution: finalInstitution
       })
 
-      if (response.success) {
+      const data = response.data || response
+      if (data.success) {
         toast.success('📧 New verification code sent!')
       } else {
         toast.error('Failed to resend code')

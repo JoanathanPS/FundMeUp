@@ -13,7 +13,10 @@ const ImpactPage = () => {
   // Fetch real stats in Live mode
   const { data: realStats } = useQuery({
     queryKey: ['impact-stats'],
-    queryFn: () => leaderboardAPI.getStats(),
+    queryFn: async () => {
+      const response = await leaderboardAPI.getStats()
+      return response.data
+    },
     enabled: !isDemo,
     staleTime: 5 * 60 * 1000,
     retry: false

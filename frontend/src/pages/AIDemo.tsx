@@ -51,9 +51,9 @@ const AIDemo: React.FC<AIDemoProps> = () => {
         flags: ["Unusual grade distribution", "Signature verification unclear", "Formatting inconsistencies", "Date misalignment"],
         recommendations: ["Manual review required", "Request additional documentation", "Verify with institution directly", "Check against institutional records"],
         documentAnalysis: {
-          quality: 'medium',
-          authenticity: 'unclear',
-          completeness: 'partial'
+          quality: 'medium' as const,
+          authenticity: 'unclear' as const,
+          completeness: 'partial' as const
         },
         verdict: 'review' as const,
         aiModel: 'Llama 3.1 70B',
@@ -144,9 +144,7 @@ const AIDemo: React.FC<AIDemoProps> = () => {
         >
           <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center space-x-2">
             <span>Try Different Scenarios</span>
-            <HelpCircle className="h-5 w-5 text-gray-400 cursor-help" 
-              title="Click on any scenario to see how AI analyzes different cases"
-            />
+            <HelpCircle className="h-5 w-5 text-gray-400 cursor-help" />
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {/* Approved Case Button */}

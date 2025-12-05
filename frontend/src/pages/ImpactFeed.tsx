@@ -29,7 +29,10 @@ const ImpactFeed = () => {
   // Fetch real feed data in Live mode
   const { data: realFeedData, isLoading: feedLoading } = useQuery({
     queryKey: ['impact-feed', updateCount],
-    queryFn: () => feedAPI.getRecent(),
+    queryFn: async () => {
+      const response = await feedAPI.getRecent()
+      return response.data || []
+    },
     enabled: !isDemo,
     staleTime: 2 * 60 * 1000,
     retry: false

@@ -41,14 +41,20 @@ const Home = () => {
   // Fetch global stats
   const { data: stats, isLoading: statsLoading, error: statsError } = useQuery({
     queryKey: ['global-stats'],
-    queryFn: () => leaderboardAPI.getStats(),
+    queryFn: async () => {
+      const response = await leaderboardAPI.getStats()
+      return response.data
+    },
     staleTime: 5 * 60 * 1000, // 5 minutes
     retry: false,
   })
 
   const { data: recentActivity, isLoading: activityLoading, error: activityError } = useQuery({
     queryKey: ['recent-activity'],
-    queryFn: () => feedAPI.getRecent(),
+    queryFn: async () => {
+      const response = await feedAPI.getRecent()
+      return response.data
+    },
     staleTime: 2 * 60 * 1000, // 2 minutes
     retry: false,
   })

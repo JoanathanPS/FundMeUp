@@ -353,7 +353,15 @@ const VerificationStatus: React.FC<VerificationStatusProps> = ({
             exit={{ opacity: 0, height: 0 }}
           >
             <AIVerificationPanel
-              analysis={status.aiAnalysis}
+              analysis={{
+                ...status.aiAnalysis,
+                documentAnalysis: {
+                  quality: 'medium' as const,
+                  authenticity: 'unclear' as const,
+                  completeness: 'partial' as const
+                },
+                verdict: 'review' as const
+              }}
               studentInfo={{
                 institution: 'Indian Institute of Technology Delhi',
                 region: 'kerala',

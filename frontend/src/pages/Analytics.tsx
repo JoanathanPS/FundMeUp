@@ -28,25 +28,37 @@ const Analytics = () => {
   // Fetch analytics data
   const { data: globalStats, isLoading: statsLoading } = useQuery({
     queryKey: ['analytics-global'],
-    queryFn: () => leaderboardAPI.getStats(),
+    queryFn: async () => {
+      const response = await leaderboardAPI.getStats()
+      return response.data
+    },
     staleTime: 5 * 60 * 1000,
   })
 
   const { data: heatmapData, isLoading: heatmapLoading } = useQuery({
     queryKey: ['analytics-heatmap'],
-    queryFn: () => leaderboardAPI.getHeatmap(),
+    queryFn: async () => {
+      const response = await leaderboardAPI.getHeatmap()
+      return response.data || []
+    },
     staleTime: 10 * 60 * 1000,
   })
 
   const { data: trendsData, isLoading: trendsLoading } = useQuery({
     queryKey: ['analytics-trends', selectedPeriod],
-    queryFn: () => leaderboardAPI.getTrends(selectedPeriod),
+    queryFn: async () => {
+      const response = await leaderboardAPI.getTrends(selectedPeriod)
+      return response.data || []
+    },
     staleTime: 5 * 60 * 1000,
   })
 
   const { data: leaderboardData, isLoading: leaderboardLoading } = useQuery({
     queryKey: ['analytics-leaderboard', selectedType],
-    queryFn: () => leaderboardAPI.getLeaderboard(selectedType),
+    queryFn: async () => {
+      const response = await leaderboardAPI.getLeaderboard(selectedType)
+      return response.data || []
+    },
     staleTime: 5 * 60 * 1000,
   })
 

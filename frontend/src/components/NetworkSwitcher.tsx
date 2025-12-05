@@ -37,7 +37,7 @@ const NetworkSwitcher = () => {
     }
 
     if (networkId === selectedNetwork) {
-      toast.info('Already connected to Ethereum network')
+      toast('Already connected to Ethereum network', { icon: 'ℹ️' })
       return
     }
 
