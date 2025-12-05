@@ -126,36 +126,50 @@ const AIAssistant: React.FC<AIAssistantProps> = ({ type = 'general', autoDetectU
   }
 
   const callGeminiAPI = async (prompt: string, context: string): Promise<string> => {
+    const contextType = userType !== 'none' ? userType : type
+    
     try {
-      const contextType = userType !== 'none' ? userType : type
+      // Always try Gemini API first - log for debugging
+      console.log('Calling Gemini API with:', { prompt, contextType })
       
-      // Always try Gemini API first
       const response = await chatAPI.sendMessage({
         message: prompt,
         context: contextType,
         userType: contextType
       })
 
+      console.log('Gemini API response:', response)
+
       const data = response.data || response
       
       if (data.success && data.response) {
+        console.log('Using Gemini response:', data.response)
+        return data.response
+      } else if (data.response) {
+        // Sometimes response is directly in data.response even if success is false
+        console.log('Using response from data.response:', data.response)
         return data.response
       } else {
+        console.error('Invalid response format:', data)
         throw new Error('Invalid response format')
       }
-    } catch (error) {
-      console.error('AI API error:', error)
-      // Only fallback if API completely fails (network error, etc.)
-      // For any user question, Gemini should handle it
-      const contextType = userType !== 'none' ? userType : type
+    } catch (error: any) {
+      console.error('AI API error details:', error)
+      console.error('Error message:', error?.message)
+      console.error('Error response:', error?.response?.data)
       
       // If it's a network/API error, show helpful message
-      if (error instanceof Error && (error.message.includes('fetch') || error.message.includes('network'))) {
-        return "I'm having trouble connecting to the AI service right now. Please check your internet connection and try again. If the problem persists, make sure the backend server is running and GEMINI_API_KEY is configured."
+      if (error?.message?.includes('fetch') || error?.message?.includes('network') || error?.code === 'ERR_NETWORK') {
+        return "I'm having trouble connecting to the AI service right now. Please check your internet connection and try again. If the problem persists, make sure the backend server is running on port 5000 and GEMINI_API_KEY is configured in backend/.env"
       }
       
-      // Last resort fallback
-      return generateAIResponse(prompt, contextType)
+      // If backend returned an error response
+      if (error?.response?.data?.message) {
+        return `Error: ${error.response.data.message}. Please make sure the backend server is running and GEMINI_API_KEY is configured.`
+      }
+      
+      // Don't fallback to hardcoded responses - always show error
+      return `I'm having trouble processing your request. Error: ${error?.message || 'Unknown error'}. Please make sure the backend server is running and check the browser console for details.`
     }
   }
 

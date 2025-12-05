@@ -1,8 +1,8 @@
 {
-  "buildCommand": "cd frontend && rm -rf node_modules package-lock.json && npm install --legacy-peer-deps --no-omit=optional && npm run build",
-  "outputDirectory": "frontend/dist",
-  "devCommand": "cd frontend && npm run dev",
-  "installCommand": "cd frontend && rm -rf node_modules package-lock.json && npm install --legacy-peer-deps --no-omit=optional",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "devCommand": "npm run dev",
+  "installCommand": "npm install --legacy-peer-deps --no-omit=optional",
   "framework": "vite",
   "rewrites": [
     {
