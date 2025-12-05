@@ -28,9 +28,9 @@ const AIDemo: React.FC<AIDemoProps> = () => {
         flags: [],
         recommendations: ["Approve milestone immediately", "Release funds automatically", "Student eligible for next milestone", "Issue achievement badge"],
         documentAnalysis: {
-          quality: 'high',
-          authenticity: 'verified',
-          completeness: 'complete'
+          quality: 'high' as const,
+          authenticity: 'verified' as const,
+          completeness: 'complete' as const
         },
         verdict: 'approve' as const,
         aiModel: 'Llama 3.1 70B',
@@ -74,9 +74,9 @@ const AIDemo: React.FC<AIDemoProps> = () => {
         flags: ["Digital alteration detected", "Grade pattern inconsistencies", "Signature verification failed", "Institution mismatch", "Compression artifacts visible"],
         recommendations: ["Reject submission immediately", "Flag for investigation", "Request original physical documents", "Report suspicious activity"],
         documentAnalysis: {
-          quality: 'low',
-          authenticity: 'suspicious',
-          completeness: 'insufficient'
+          quality: 'low' as const,
+          authenticity: 'suspicious' as const,
+          completeness: 'insufficient' as const
         },
         verdict: 'reject' as const,
         aiModel: 'Llama 3.1 70B',

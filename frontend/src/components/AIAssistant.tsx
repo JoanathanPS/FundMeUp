@@ -154,7 +154,7 @@ const AIAssistant: React.FC<AIAssistantProps> = ({ type = 'general', autoDetectU
 
     try {
       // Use selected userType or fallback to type prop
-      const contextType = (userType && userType !== 'none' && (userType === 'student' || userType === 'donor')) ? userType : type
+      const contextType: 'student' | 'donor' | 'admin' | 'general' = (userType === 'student' || userType === 'donor') ? userType : type
       const response = await callGeminiAPI(currentInput, contextType)
       
       const assistantMessage: Message = {

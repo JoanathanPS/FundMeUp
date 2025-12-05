@@ -213,7 +213,7 @@ const ImpactFeed = () => {
   // Use demo data in Demo mode, real data (or empty) in Live mode
   const feedData = isDemo ? mockFeedData : (realFeedData || [])
   
-  const filteredData = feedData.filter(item => {
+  const filteredData = feedData.filter((item: any) => {
     const matchesFilter = filter === 'all' || item.type === filter
     const matchesSearch = searchTerm === '' || 
       item.student.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -319,7 +319,7 @@ const ImpactFeed = () => {
               </p>
             </div>
           ) : (
-            filteredData.map((activity, index) => (
+            filteredData.map((activity: any, index: number) => (
               <motion.div
                 key={activity.id}
                 initial={{ opacity: 0, y: 20 }}

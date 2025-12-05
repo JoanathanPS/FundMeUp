@@ -307,7 +307,7 @@ const EnhancedDonationModal: React.FC<DonationModalProps> = ({
                         </div>
                       </div>
                       <div className="text-right">
-                        <div className="text-2xl font-bold text-orange-600">₹{amount.toLocaleString('en-IN')}</div>
+                        <div className="text-2xl font-bold text-orange-600">₹{Number(amount).toLocaleString('en-IN')}</div>
                       </div>
                     </div>
                     {message && (

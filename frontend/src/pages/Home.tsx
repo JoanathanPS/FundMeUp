@@ -630,7 +630,7 @@ const Home = () => {
                 : "Add scholarships in Supabase or switch to Demo Mode to view sample data."
               }
               showToggle={true}
-              showMigrationCTA={!isDemo && scholarshipsError && 'status' in scholarshipsError && scholarshipsError.status === 200}
+              showMigrationCTA={!isDemo && scholarshipsError && 'status' in scholarshipsError && scholarshipsError.status === 200 ? true : undefined}
               onRunMigration={() => {
                 // This will be handled by SupabaseStatusBanner
               }}

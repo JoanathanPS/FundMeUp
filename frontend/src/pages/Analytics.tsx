@@ -206,7 +206,7 @@ const Analytics = () => {
               </div>
             ) : (
               <div className="space-y-4">
-                {displayTrends.map((day, index) => (
+                {displayTrends.map((day: { date: string; totalFunded: number; transactions: number }, index: number) => (
                   <div key={day.date} className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
                     <div className="flex items-center space-x-3">
                       <div className="w-3 h-3 bg-orange-500 rounded-full" />
@@ -251,7 +251,7 @@ const Analytics = () => {
               </div>
             ) : (
               <div className="space-y-4">
-                {displayHeatmap.map((country, index) => (
+                {displayHeatmap.map((country: { country: string; students: number; verified: number; totalFunds: number; institutions: number; coordinates: { lat: number; lng: number } }, index: number) => (
                   <div key={country.country} className="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
                     <div className="flex items-center justify-between mb-2">
                       <h4 className="font-semibold text-gray-900 dark:text-white">
@@ -315,7 +315,7 @@ const Analytics = () => {
             </div>
           ) : (
             <div className="space-y-4">
-              {displayLeaderboard.map((item, index) => (
+              {displayLeaderboard.map((item: { rank: number; name: string; [key: string]: any }, index: number) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, x: -20 }}
