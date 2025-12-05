@@ -112,17 +112,14 @@ export const aiAPI = {
 }
 
 // Chat API (Gemini-powered AI Assistant)
+// Uses Vercel serverless function at /api/chat
 export const chatAPI = {
   sendMessage: (data: { message: string; context?: string; userType?: string }) => {
-    // In development, use proxy. In production, use full URL
-    const isDev = import.meta.env.DEV
-    const url = isDev ? '/api/chat' : `${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/chat`
-    return api.post(url, data)
+    // Always use relative path - Vercel will route to serverless function
+    return api.post('/api/chat', data)
   },
   getStats: () => {
-    const isDev = import.meta.env.DEV
-    const url = isDev ? '/api/chat/stats' : `${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/chat/stats`
-    return api.get(url)
+    return api.get('/api/chat/stats')
   },
 }
 
