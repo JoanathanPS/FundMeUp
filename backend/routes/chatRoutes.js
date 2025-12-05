@@ -78,43 +78,44 @@ Respond naturally as if you're a knowledgeable friend helping them navigate the 
     
     if (genAI) {
       try {
-        // Use Gemini API
+        // Use Gemini API - always try to get a real response
         const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
         
-        // Build conversation history with system prompt
-        const chat = model.startChat({
-          history: [
-            {
-              role: 'user',
-              parts: [{ text: systemPrompt }]
-            },
-            {
-              role: 'model',
-              parts: [{ text: 'I understand. I\'m FundMeUp\'s AI assistant ready to help students and donors.' }]
-            }
-          ]
-        });
+        // Combine system prompt with user message for better context
+        const fullPrompt = `${systemPrompt}\n\nUser: ${message}\n\nAssistant:`;
         
-        const result = await chat.sendMessage(message);
+        const result = await model.generateContent(fullPrompt);
         const geminiResponse = await result.response;
-        response = geminiResponse.text() || "I'm here to help! Could you tell me more about what you need?";
+        response = geminiResponse.text();
+        
+        // If response is empty or too short, try again
+        if (!response || response.trim().length < 10) {
+          // Try with chat history approach
+          const chat = model.startChat({
+            history: [
+              {
+                role: 'user',
+                parts: [{ text: systemPrompt }]
+              },
+              {
+                role: 'model',
+                parts: [{ text: 'I understand. I\'m FundMeUp\'s AI assistant ready to help students and donors.' }]
+              }
+            ]
+          });
+          
+          const chatResult = await chat.sendMessage(message);
+          const chatResponse = await chatResult.response;
+          response = chatResponse.text() || response || "I'm here to help! Could you tell me more about what you need?";
+        }
       } catch (geminiError) {
         console.error('Gemini API Error:', geminiError);
-        // Fallback to simple generation if chat fails
-        try {
-          const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
-          const fullPrompt = `${systemPrompt}\n\nUser: ${message}\n\nAssistant:`;
-          const result = await model.generateContent(fullPrompt);
-          const geminiResponse = await result.response;
-          response = geminiResponse.text() || "I'm here to help! Could you tell me more about what you need?";
-        } catch (fallbackError) {
-          console.error('Gemini Fallback Error:', fallbackError);
-          throw fallbackError;
-        }
+        // If Gemini fails, throw error to be caught by outer try-catch
+        throw new Error(`Gemini API error: ${geminiError.message}`);
       }
     } else {
-      // Fallback if Gemini API key not configured
-      response = "I'm here to help! Could you tell me more about what you need?";
+      // If Gemini API key not configured, throw error
+      throw new Error('GEMINI_API_KEY not configured. Please set it in backend/.env');
     }
 
     res.status(200).json({
@@ -126,18 +127,12 @@ Respond naturally as if you're a knowledgeable friend helping them navigate the 
   } catch (error) {
     console.error('Chat Error:', error);
     
-    // Fallback response
-    const fallbackResponses = {
-      student: "I'm here to help with your scholarship application! What would you like assistance with?",
-      donor: "I can help you find students to support and understand the donation process. What would you like to know?",
-      default: "I'm FundMeUp's AI assistant. How can I help you today?"
-    };
-
-    res.status(200).json({
-      success: true,
-      response: fallbackResponses[userType] || fallbackResponses.default,
-      timestamp: new Date().toISOString(),
-      fallback: true
+    // Return error response so frontend can handle it
+    res.status(500).json({
+      success: false,
+      error: error.message || 'Failed to generate response',
+      message: error.message || 'An error occurred while processing your request',
+      timestamp: new Date().toISOString()
     });
   }
 });

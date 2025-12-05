@@ -129,7 +129,7 @@ const AIAssistant: React.FC<AIAssistantProps> = ({ type = 'general', autoDetectU
     try {
       const contextType = userType !== 'none' ? userType : type
       
-      // Call backend API (which uses Gemini)
+      // Always try Gemini API first
       const response = await chatAPI.sendMessage({
         message: prompt,
         context: contextType,
@@ -145,8 +145,16 @@ const AIAssistant: React.FC<AIAssistantProps> = ({ type = 'general', autoDetectU
       }
     } catch (error) {
       console.error('AI API error:', error)
-      // Fallback to local response
+      // Only fallback if API completely fails (network error, etc.)
+      // For any user question, Gemini should handle it
       const contextType = userType !== 'none' ? userType : type
+      
+      // If it's a network/API error, show helpful message
+      if (error instanceof Error && (error.message.includes('fetch') || error.message.includes('network'))) {
+        return "I'm having trouble connecting to the AI service right now. Please check your internet connection and try again. If the problem persists, make sure the backend server is running and GEMINI_API_KEY is configured."
+      }
+      
+      // Last resort fallback
       return generateAIResponse(prompt, contextType)
     }
   }
@@ -195,7 +203,16 @@ const AIAssistant: React.FC<AIAssistantProps> = ({ type = 'general', autoDetectU
     } catch (error) {
       console.error('Error generating response:', error)
       setIsLoading(false)
-      toast.error('Failed to generate response. Please try again.')
+      
+      // Show error message in chat instead of toast
+      const errorMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        role: 'assistant',
+        content: error instanceof Error ? error.message : 'Failed to generate response. Please make sure the backend server is running and GEMINI_API_KEY is configured in backend/.env',
+        timestamp: new Date()
+      }
+      setMessages(prev => [...prev, errorMessage])
+      toast.error('AI service error. Check console for details.')
     }
   }
 
