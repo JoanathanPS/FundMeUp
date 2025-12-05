@@ -77,14 +77,41 @@ Respond naturally as if you're a knowledgeable friend helping them navigate the 
     let response;
     
     if (genAI) {
-      // Use Gemini API
-      const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
-      
-      const fullPrompt = `${systemPrompt}\n\nUser: ${message}\n\nAssistant:`;
-      
-      const result = await model.generateContent(fullPrompt);
-      const geminiResponse = await result.response;
-      response = geminiResponse.text() || "I'm here to help! Could you tell me more about what you need?";
+      try {
+        // Use Gemini API
+        const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
+        
+        // Build conversation history with system prompt
+        const chat = model.startChat({
+          history: [
+            {
+              role: 'user',
+              parts: [{ text: systemPrompt }]
+            },
+            {
+              role: 'model',
+              parts: [{ text: 'I understand. I\'m FundMeUp\'s AI assistant ready to help students and donors.' }]
+            }
+          ]
+        });
+        
+        const result = await chat.sendMessage(message);
+        const geminiResponse = await result.response;
+        response = geminiResponse.text() || "I'm here to help! Could you tell me more about what you need?";
+      } catch (geminiError) {
+        console.error('Gemini API Error:', geminiError);
+        // Fallback to simple generation if chat fails
+        try {
+          const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
+          const fullPrompt = `${systemPrompt}\n\nUser: ${message}\n\nAssistant:`;
+          const result = await model.generateContent(fullPrompt);
+          const geminiResponse = await result.response;
+          response = geminiResponse.text() || "I'm here to help! Could you tell me more about what you need?";
+        } catch (fallbackError) {
+          console.error('Gemini Fallback Error:', fallbackError);
+          throw fallbackError;
+        }
+      }
     } else {
       // Fallback if Gemini API key not configured
       response = "I'm here to help! Could you tell me more about what you need?";
