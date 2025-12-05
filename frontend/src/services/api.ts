@@ -1,6 +1,10 @@
 import axios from 'axios'
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000'
+// For Vercel deployment, use relative paths (serverless functions)
+// For local dev with backend, use VITE_API_URL or localhost
+const API_BASE_URL = import.meta.env.DEV 
+  ? (import.meta.env.VITE_API_URL || 'http://localhost:5000')
+  : '' // Empty string = relative paths for Vercel serverless functions
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -116,10 +120,21 @@ export const aiAPI = {
 export const chatAPI = {
   sendMessage: (data: { message: string; context?: string; userType?: string }) => {
     // Always use relative path - Vercel will route to serverless function
-    return api.post('/api/chat', data)
+    // Create a new axios instance without baseURL to ensure relative path
+    const chatApi = axios.create({
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    return chatApi.post('/api/chat', data)
   },
   getStats: () => {
-    return api.get('/api/chat/stats')
+    const chatApi = axios.create({
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+    return chatApi.get('/api/chat/stats')
   },
 }
 
