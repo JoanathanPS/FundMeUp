@@ -18,6 +18,9 @@
     "blockchain"
   ],
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@google/generative-ai": "^0.1.3"
+  }
 }
 
