@@ -15,6 +15,7 @@ import {
   HelpCircle
 } from 'lucide-react'
 import { toast } from 'react-hot-toast'
+import { chatAPI } from '@/services/api'
 
 interface Message {
   id: string
@@ -126,11 +127,24 @@ const AIAssistant: React.FC<AIAssistantProps> = ({ type = 'general', autoDetectU
 
   const callGeminiAPI = async (prompt: string, context: string): Promise<string> => {
     try {
-      // Fallback to local response immediately
       const contextType = userType !== 'none' ? userType : type
-      return generateAIResponse(prompt, contextType)
+      
+      // Call backend API (which uses Gemini)
+      const response = await chatAPI.sendMessage({
+        message: prompt,
+        context: contextType,
+        userType: contextType
+      })
+
+      const data = response.data || response
+      
+      if (data.success && data.response) {
+        return data.response
+      } else {
+        throw new Error('Invalid response format')
+      }
     } catch (error) {
-      console.error('AI error:', error)
+      console.error('AI API error:', error)
       // Fallback to local response
       const contextType = userType !== 'none' ? userType : type
       return generateAIResponse(prompt, contextType)

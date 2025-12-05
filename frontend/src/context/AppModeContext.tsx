@@ -5,7 +5,6 @@ type AppMode = "demo" | "live";
 interface AppModeContextValue {
   mode: AppMode;
   isDemo: boolean;
-  isDevMode: boolean;
   toggleMode: () => void;
   setMode: (m: AppMode) => void;
 }
@@ -15,34 +14,6 @@ const AppModeContext = createContext<AppModeContextValue | undefined>(
 );
 
 const STORAGE_KEY = "fundmeup-mode";
-const DEV_MODE_KEY = "fundmeup-dev-mode";
-
-// Check if dev mode is enabled
-const checkDevMode = (): boolean => {
-  if (typeof window === "undefined") return false;
-  
-  // Check query param
-  const urlParams = new URLSearchParams(window.location.search);
-  if (urlParams.get('dev') === 'true') {
-    localStorage.setItem(DEV_MODE_KEY, 'true');
-    return true;
-  }
-  
-  // Check localStorage
-  const saved = localStorage.getItem(DEV_MODE_KEY);
-  return saved === 'true';
-};
-
-// Enable dev mode with Ctrl+Shift+D
-if (typeof window !== "undefined") {
-  window.addEventListener('keydown', (e) => {
-    if (e.ctrlKey && e.shiftKey && e.key === 'D') {
-      const current = localStorage.getItem(DEV_MODE_KEY) === 'true';
-      localStorage.setItem(DEV_MODE_KEY, (!current).toString());
-      window.location.reload();
-    }
-  });
-}
 
 export const AppModeProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
@@ -59,13 +30,6 @@ export const AppModeProvider: React.FC<{ children: React.ReactNode }> = ({
     return envDefault;
   });
 
-  const [isDevMode, setIsDevMode] = useState(() => checkDevMode());
-
-  useEffect(() => {
-    // Check for dev mode on mount and when query params change
-    setIsDevMode(checkDevMode());
-  }, []);
-
   const setMode = (m: AppMode) => {
     setModeState(m);
     if (typeof window !== "undefined") {
@@ -74,14 +38,12 @@ export const AppModeProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   const toggleMode = () => {
-    if (!isDevMode) return; // Only allow toggle in dev mode
     setMode(mode === "demo" ? "live" : "demo");
   };
 
   const value: AppModeContextValue = {
     mode,
     isDemo: mode === "demo",
-    isDevMode,
     toggleMode,
     setMode,
   };

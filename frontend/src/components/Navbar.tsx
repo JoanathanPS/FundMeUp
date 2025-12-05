@@ -11,7 +11,7 @@ interface NavbarProps {
 
 const Navbar = ({ onMenuClick }: NavbarProps) => {
   const location = useLocation()
-  const { isDemo, toggleMode, mode, isDevMode } = useAppMode()
+  const { isDemo, toggleMode, mode } = useAppMode()
 
   const isActive = (path: string) => {
     return location.pathname === path || location.pathname.startsWith(path + '/')

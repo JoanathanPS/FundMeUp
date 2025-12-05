@@ -1,10 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const Groq = require('groq-sdk');
+const { GoogleGenerativeAI } = require('@google/generative-ai');
 
-const groqClient = new Groq({
-  apiKey: process.env.GROQ_API_KEY
-});
+// Initialize Gemini AI
+const genAI = process.env.GEMINI_API_KEY ? new GoogleGenerativeAI(process.env.GEMINI_API_KEY) : null;
 
 // Load training dataset
 const trainingDataset = require('../data/chatTrainingDataset.json');
@@ -75,23 +74,21 @@ TRAINING DATA: You've been trained on ${trainingDataset.length} domain-specific 
 
 Respond naturally as if you're a knowledgeable friend helping them navigate the platform.`;
 
-    const completion = await groqClient.chat.completions.create({
-      messages: [
-        {
-          role: 'system',
-          content: systemPrompt
-        },
-        {
-          role: 'user',
-          content: message
-        }
-      ],
-      model: 'llama-3.1-70b-versatile',
-      temperature: 0.7,
-      max_tokens: 500,
-    });
-
-    const response = completion.choices[0]?.message?.content || "I'm here to help! Could you tell me more about what you need?";
+    let response;
+    
+    if (genAI) {
+      // Use Gemini API
+      const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
+      
+      const fullPrompt = `${systemPrompt}\n\nUser: ${message}\n\nAssistant:`;
+      
+      const result = await model.generateContent(fullPrompt);
+      const geminiResponse = await result.response;
+      response = geminiResponse.text() || "I'm here to help! Could you tell me more about what you need?";
+    } else {
+      // Fallback if Gemini API key not configured
+      response = "I'm here to help! Could you tell me more about what you need?";
+    }
 
     res.status(200).json({
       success: true,
@@ -125,17 +122,17 @@ Respond naturally as if you're a knowledgeable friend helping them navigate the 
 router.get('/stats', (req, res) => {
   res.status(200).json({
     success: true,
-    data: {
-      trainingSamples: trainingDataset.length,
-      model: 'llama-3.1-70b-versatile',
-      provider: 'Groq',
-      features: [
-        'Context-aware responses',
-        'Domain-specific training',
-        'Multi-user type support',
-        'Fallback handling'
-      ]
-    }
+      data: {
+        trainingSamples: trainingDataset.length,
+        model: 'gemini-pro',
+        provider: genAI ? 'Google Gemini' : 'Not configured',
+        features: [
+          'Context-aware responses',
+          'Domain-specific training',
+          'Multi-user type support',
+          'Fallback handling'
+        ]
+      }
   });
 });
 

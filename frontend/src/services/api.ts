@@ -111,6 +111,12 @@ export const aiAPI = {
   verifyRegional: (data: any) => api.post('/ai/v2/verify-regional', data),
 }
 
+// Chat API (Gemini-powered AI Assistant)
+export const chatAPI = {
+  sendMessage: (data: { message: string; context?: string; userType?: string }) => api.post('/api/chat', data),
+  getStats: () => api.get('/api/chat/stats'),
+}
+
 // Email Verification API
 export const emailVerificationAPI = {
   requestEmail: (data: any) => api.post('/verification/v3/request-email', data),
