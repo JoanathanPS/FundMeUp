@@ -44,9 +44,6 @@ const Home = () => {
     queryFn: () => leaderboardAPI.getStats(),
     staleTime: 5 * 60 * 1000, // 5 minutes
     retry: false,
-    onError: (error) => {
-      console.error('Error fetching stats:', error)
-    },
   })
 
   const { data: recentActivity, isLoading: activityLoading, error: activityError } = useQuery({
@@ -54,9 +51,6 @@ const Home = () => {
     queryFn: () => feedAPI.getRecent(),
     staleTime: 2 * 60 * 1000, // 2 minutes
     retry: false,
-    onError: (error) => {
-      console.error('Error fetching recent activity:', error)
-    },
   })
 
   // Mock data for demo (fallback when API fails)

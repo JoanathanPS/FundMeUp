@@ -132,3 +132,4 @@ export const verificationAPI = {
 }
 
 export default api
+export { api }

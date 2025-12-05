@@ -81,7 +81,7 @@ const DonationModal = ({ student, onDonate, onClose }: DonationModalProps) => {
       toast.loading('Transaction confirmed! Processing...', { id: 'donating' })
 
       // Mint NFT badge (only in demo mode)
-      if (isDemo) {
+      if (isDemo && address) {
         await blockchainSimulator.simulateNFTMint(
           address,
           student.wallet || '0xDemoStudent',
@@ -227,7 +227,7 @@ const DonationModal = ({ student, onDonate, onClose }: DonationModalProps) => {
                   Support {student.dream}
                 </h2>
                 <p className="text-sm text-gray-600 dark:text-gray-400">
-                  {student.field} • Year {student.year}
+                  {student.field}
                 </p>
               </div>
             </div>

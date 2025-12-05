@@ -29,8 +29,8 @@ export const proofStorage = {
     const proofs = proofStorage.getAllProofs()
     const newProof: StoredProof = {
       ...proof,
-      id: proof.id || `proof_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
-      submittedAt: proof.submittedAt || new Date().toISOString(),
+      id: `proof_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+      submittedAt: new Date().toISOString(),
       verificationStatus: proof.verificationStatus || 'pending'
     }
     proofs.unshift(newProof) // Add to beginning

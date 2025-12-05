@@ -136,7 +136,7 @@ const EmailVerification: React.FC<EmailVerificationProps> = ({
           {getStepIcon('email', step === 'email', step !== 'email')}
           <span className={`text-sm font-medium ${
             step === 'email' ? 'text-blue-600' : 
-            step !== 'email' ? 'text-green-600' : 'text-gray-500'
+            (step === 'otp' || step === 'complete') ? 'text-green-600' : 'text-gray-500'
           }`}>
             Enter Email
           </span>

@@ -34,8 +34,8 @@ export const scholarshipStorage = {
     const scholarships = scholarshipStorage.getAllScholarships()
     const newScholarship: StoredScholarship = {
       ...scholarship,
-      id: scholarship.id || `scholarship_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
-      createdAt: scholarship.createdAt || new Date().toISOString()
+      id: `scholarship_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
+      createdAt: new Date().toISOString()
     }
     scholarships.unshift(newScholarship) // Add to beginning
     localStorage.setItem(STORAGE_KEY, JSON.stringify(scholarships))

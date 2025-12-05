@@ -6,26 +6,32 @@ import ProofSubmission from '@/components/ProofSubmission'
 const SubmitProof = () => {
   const [selectedMilestone, setSelectedMilestone] = useState<string | null>(null)
 
-  const mockMilestones = [
+  const mockMilestones: Array<{
+    id: string
+    title: string
+    description: string
+    status: 'pending' | 'in_progress' | 'completed' | 'verified'
+    targetDate: string
+  }> = [
     {
       id: '1',
       title: 'Complete Advanced Physics Course',
       description: 'Master quantum mechanics fundamentals and complete all coursework with A+ grade',
-      status: 'in_progress' as const,
+      status: 'in_progress',
       targetDate: '2024-02-15'
     },
     {
       id: '2',
       title: 'Research Paper Publication',
       description: 'Publish findings on quantum algorithms in a peer-reviewed journal',
-      status: 'pending' as const,
+      status: 'pending',
       targetDate: '2024-04-30'
     },
     {
       id: '3',
       title: 'Internship at Tech Giant',
       description: 'Gain industry experience at a leading technology company',
-      status: 'pending' as const,
+      status: 'pending',
       targetDate: '2024-06-15'
     }
   ]
