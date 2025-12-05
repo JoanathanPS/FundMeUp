@@ -28,7 +28,9 @@ create table if not exists scholarships (
   raised numeric default 0,
   milestones jsonb default '[]'::jsonb,
   verified boolean default false,
-  created_at timestamptz default now()
+  created_at timestamptz default now(),
+  institution_name text,
+  student_wallet text
 );
 
 create table if not exists milestones (
@@ -72,10 +74,49 @@ create index if not exists idx_scholarships_created_at on scholarships(created_a
 create index if not exists idx_donations_scholarship on donations(scholarship_id);
 create index if not exists idx_milestones_scholarship on milestones(scholarship_id);
 
--- RLS NOTE:
--- For client anon key usage, enable Row Level Security (RLS) and implement policies.
--- Example minimal policy for public read on scholarships:
--- ALTER TABLE scholarships ENABLE ROW LEVEL SECURITY;
--- CREATE POLICY "public_read" ON scholarships FOR SELECT USING (true);
--- For INSERT/UPDATE/DELETE, create stricter policies requiring authenticated users.
+-- Enable Row Level Security (RLS) on all tables
+ALTER TABLE users ENABLE ROW LEVEL SECURITY;
+ALTER TABLE scholarships ENABLE ROW LEVEL SECURITY;
+ALTER TABLE milestones ENABLE ROW LEVEL SECURITY;
+ALTER TABLE donors ENABLE ROW LEVEL SECURITY;
+ALTER TABLE donations ENABLE ROW LEVEL SECURITY;
+ALTER TABLE verifications ENABLE ROW LEVEL SECURITY;
+
+-- RLS Policies for public read access (required for anon key)
+-- Scholarships: Allow public read access
+CREATE POLICY IF NOT EXISTS "Allow public read scholarships" ON scholarships 
+  FOR SELECT USING (true);
+
+-- Users: Allow public read access
+CREATE POLICY IF NOT EXISTS "Allow public read users" ON users 
+  FOR SELECT USING (true);
+
+-- Donors: Allow public read access
+CREATE POLICY IF NOT EXISTS "Allow public read donors" ON donors 
+  FOR SELECT USING (true);
+
+-- Milestones: Allow public read access
+CREATE POLICY IF NOT EXISTS "Allow public read milestones" ON milestones 
+  FOR SELECT USING (true);
+
+-- Donations: Allow public read access
+CREATE POLICY IF NOT EXISTS "Allow public read donations" ON donations 
+  FOR SELECT USING (true);
+
+-- Verifications: Allow public read access
+CREATE POLICY IF NOT EXISTS "Allow public read verifications" ON verifications 
+  FOR SELECT USING (true);
+
+-- RLS Policies for authenticated write operations (for future use)
+-- Note: These policies require Supabase Auth to be set up
+-- Uncomment and customize based on your authentication requirements
+
+-- CREATE POLICY "Allow authenticated insert scholarships" ON scholarships 
+--   FOR INSERT WITH CHECK (auth.role() = 'authenticated');
+-- 
+-- CREATE POLICY "Allow authenticated update scholarships" ON scholarships 
+--   FOR UPDATE USING (auth.role() = 'authenticated');
+-- 
+-- CREATE POLICY "Allow authenticated insert donations" ON donations 
+--   FOR INSERT WITH CHECK (auth.role() = 'authenticated');
 

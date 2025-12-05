@@ -1,0 +1,10 @@
+backend/
+node_modules/
+*.bat
+*.md
+!README.md
+supabase/
+.git/
+.vscode/
+.idea/
+

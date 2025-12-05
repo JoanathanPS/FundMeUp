@@ -1,7 +1,7 @@
 {
-  "name": "microscholar-backend",
+  "name": "fundmeup-backend",
   "version": "1.0.0",
-  "description": "Backend API for MicroScholar - Web3 Scholarship Platform",
+  "description": "Backend API for FundMeUp - Web3 Scholarship Platform",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -15,7 +15,7 @@
     "deploy:v3:sepolia": "npx hardhat run scripts/deployV3.js --network sepolia",
     "node": "npx hardhat node",
     "test": "npx hardhat test",
-    "test:v2": "npx hardhat test test/MicroScholarV2.test.js"
+    "test:v2": "npx hardhat test test/FundMeUpV2.test.js"
   },
   "keywords": [
     "web3",
@@ -23,7 +23,7 @@
     "blockchain",
     "express",
     "mongodb",
-    "microscholar"
+    "fundmeup"
   ],
   "author": "",
   "license": "MIT",

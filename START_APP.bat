@@ -14,10 +14,9 @@ timeout /t 3 /nobreak >nul
 echo [2/3] Starting Frontend Server...
 if exist "frontend" (
     start "FundMeUp Frontend" cmd /k "cd frontend && npm run dev"
-) else if exist "fundmeup-frontend" (
-    start "FundMeUp Frontend" cmd /k "cd fundmeup-frontend && npm run dev"
 ) else (
     echo ERROR: Frontend directory not found!
+    echo Expected directory: frontend
     pause
     exit /b 1
 )

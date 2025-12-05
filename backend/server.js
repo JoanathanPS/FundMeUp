@@ -34,13 +34,21 @@ const app = express();
 // Connect to MongoDB
 connectDB();
 
+// Seed demo data on startup (if Supabase is empty)
+const { seedDemoData } = require('./scripts/seedDemoData');
+setTimeout(() => {
+  seedDemoData().catch(err => {
+    console.warn('Demo data seeding failed (non-critical):', err.message);
+  });
+}, 2000); // Wait 2 seconds for Supabase to initialize
+
 // Initialize Ethers services
 ethersService.initialize().catch(err => {
   console.error('Warning: Ethers service initialization failed:', err.message);
   console.log('Server will continue without blockchain functionality');
 });
 
-// Initialize EthersV2 service (for MicroScholarV2 contract)
+// Initialize EthersV2 service (for FundMeUpV2 contract)
 ethersV2Service.initialize().catch(err => {
   console.error('Warning: EthersV2 service initialization failed:', err.message);
   console.log('V2 features will not be available. Deploy V2 contract first.');
@@ -97,12 +105,12 @@ app.use('/api/upload-proof', proofRoutes);
 app.use('/api/verify-proof', proofRoutes);
 app.use('/api/transactions', transactionRoutes);
 
-// MicroScholar Enhanced Routes (V1)
+// FundMeUp Enhanced Routes (V1)
 app.use('/api/submit-proof', microScholarRoutes);
 app.use('/api/leaderboard', microScholarRoutes);
 app.use('/api/feed', microScholarRoutes);
 
-// MicroScholar V2 Routes (Impact Tokens, Auto-Savings, Skill Badges)
+// FundMeUp V2 Routes (Impact Tokens, Auto-Savings, Skill Badges)
 app.use('/api/v2', microScholarV2Routes);
 
 // AI & Matching Routes
@@ -137,7 +145,7 @@ app.get('/api/health', (req, res) => {
 app.get('/', (req, res) => {
   res.status(200).json({
     success: true,
-    message: 'MicroScholar - Web3 Scholarship Platform API',
+    message: 'FundMeUp - Web3 Scholarship Platform API',
     version: '2.0.0',
     features: {
       v2: {
@@ -174,12 +182,12 @@ app.get('/', (req, res) => {
         'GET /api/transactions/wallet/:address': 'Get transactions by wallet',
         'GET /api/transactions/:txHash': 'Get transaction by hash'
       },
-      microScholar: {
+      fundmeup: {
         'POST /api/submit-proof': 'Submit proof with AI fraud detection',
         'GET /api/leaderboard': 'Get top donors leaderboard',
         'GET /api/feed': 'Get live activity feed (with NFT badges & media)'
       },
-      microScholarV2: {
+      fundmeupV2: {
         'POST /api/v2/submit-proof': 'Submit proof (AI + blockchain)',
         'POST /api/v2/fund-scholarship': 'Fund scholarship & earn ISCR tokens',
         'GET /api/v2/funding-circle/:id': 'Get all contributors',
@@ -238,7 +246,7 @@ app.listen(PORT, () => {
   console.log(`
 ╔═══════════════════════════════════════════════════════════╗
 ║                                                           ║
-║   🎓 MicroScholar - Web3 Scholarship Platform            ║
+║   🎓 FundMeUp - Web3 Scholarship Platform            ║
 ║                                                           ║
 ║   Server running on port ${PORT}                            ║
 ║   Environment: ${process.env.NODE_ENV || 'development'}                              ║

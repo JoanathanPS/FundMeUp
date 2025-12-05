@@ -8,7 +8,12 @@ router.get('/', async (req, res) => {
     const filters = {};
     if (req.query.status) filters.status = req.query.status;
 
-    let query = require('../config/supabase').from('transactions').select('*');
+    const supabaseClient = require('../config/supabase');
+    if (!supabaseClient) {
+      return res.status(200).json({ success: true, data: [], message: 'Supabase not configured' });
+    }
+    
+    let query = supabaseClient.from('transactions').select('*');
     if (filters.status) query = query.eq('status', filters.status);
 
     const { data, error } = await query.order('created_at', { ascending: false });
@@ -36,6 +41,10 @@ router.get('/student/:wallet', async (req, res) => {
     }
 
     const supabase = require('../config/supabase');
+    if (!supabase) {
+      return res.status(200).json({ success: true, data: [], message: 'Supabase not configured' });
+    }
+    
     const { data, error } = await supabase
       .from('transactions')
       .select('*')

@@ -1,5 +1,5 @@
 /**
- * Ethers V2 service for MicroScholar V2 contract interactions
+ * Ethers V2 service for FundMeUp V2 contract interactions
  * This service handles enhanced blockchain features like impact tokens
  */
 

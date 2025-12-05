@@ -113,8 +113,7 @@ RECOVERY_SCRIPT.bat
 tailadmin-react---tailwind-react-dashboard-template/
 mailgo-main/
 
-# Duplicate/orphaned files (to be removed)
-src/
+# Duplicate/orphaned files (removed)
 
 # Git
 .git/
