@@ -4,16 +4,7 @@
   "devCommand": "cd frontend && npm run dev",
   "installCommand": "cd frontend && npm install --legacy-peer-deps --no-omit=optional",
   "framework": "vite",
-  "functions": {
-    "api/chat.js": {
-      "runtime": "@vercel/node"
-    }
-  },
   "rewrites": [
-    {
-      "source": "/api/chat",
-      "destination": "/api/chat"
-    },
     {
       "source": "/(.*)",
       "destination": "/index.html"
