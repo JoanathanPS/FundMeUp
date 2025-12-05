@@ -63,26 +63,24 @@ const Navbar = ({ onMenuClick }: NavbarProps) => {
           {/* Wallet Connect & Mobile menu - Fixed width, no shrink */}
           <div className="flex items-center gap-2 flex-shrink-0">
             <div className="hidden md:flex items-center gap-2">
-              {/* Demo/Live Mode Toggle Button - Only visible in dev mode */}
-              {isDevMode && (
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => {
-                    toggleMode()
-                  }}
-                  className={`text-white font-semibold px-3 py-2 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg flex items-center space-x-1.5 text-xs cursor-pointer whitespace-nowrap ${
-                    isDemo
-                      ? 'bg-indigo-500 hover:bg-indigo-600'
-                      : 'bg-emerald-500 hover:bg-emerald-600'
-                  }`}
-                  title={isDemo ? 'Demo Mode: Sample data only. Click to switch to Live (Supabase).' : 'Live Mode: Supabase enabled. Click to switch to Demo.'}
-                >
-                  <Info className="h-3.5 w-3.5 flex-shrink-0" />
-                  <span className="hidden xl:inline">{isDemo ? 'Demo Mode' : 'Live Mode'}</span>
-                  <span className="xl:hidden">{isDemo ? 'Demo' : 'Live'}</span>
-                </motion.button>
-              )}
+              {/* Demo/Live Mode Toggle Button - Always visible */}
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => {
+                  toggleMode()
+                }}
+                className={`text-white font-semibold px-3 py-2 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg flex items-center space-x-1.5 text-xs cursor-pointer whitespace-nowrap w-[140px] justify-center flex-shrink-0 ${
+                  isDemo
+                    ? 'bg-indigo-500 hover:bg-indigo-600'
+                    : 'bg-emerald-500 hover:bg-emerald-600'
+                }`}
+                title={isDemo ? 'Demo Mode: Sample data only. Click to switch to Live (Supabase).' : 'Live Mode: Supabase enabled. Click to switch to Demo.'}
+              >
+                <Info className="h-3.5 w-3.5 flex-shrink-0" />
+                <span className="hidden xl:inline">{isDemo ? 'Demo Mode' : 'Live Mode'}</span>
+                <span className="xl:hidden">{isDemo ? 'Demo' : 'Live'}</span>
+              </motion.button>
 
               {/* Wallet Button - Only enabled in Live Mode */}
               <div className="flex-shrink-0">
