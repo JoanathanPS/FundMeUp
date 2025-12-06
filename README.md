@@ -1,13 +1,16 @@
-<img width="1920" height="935" alt="image" src="https://github.com/user-attachments/assets/91c6a6c7-0634-486e-b390-a60c1f025f0e" /># FundMeUp 🎓💸  
-*A Web3-powered scholarship platform connecting students with global donors — fast, transparent, and borderless.*
+<p align="center">
+  <img src="/mnt/data/f13a687a-15e7-4b3e-a846-d3ceb2bb38b1.png" width="400" alt="FundMeUp Banner"/>
+</p>
+<h1 align="center">FundMeUp 🎓💸</h1>
+<p align="center"><i>Web3-powered scholarships connecting students with global donors — fast, transparent, and borderless.</i></p>
+
 
 <!-- Screenshots Section -->
 <p align="center">
-  <img src="<img width="1920" height="926" alt="image" src="https://github.com/user-attachments/assets/c3060e27-4da5-42bf-95f1-c2c383919a10" /> alt="FundMeUp Home Page"/>
+  <img src="https://github.com/user-attachments/assets/c3060e27-4da5-42bf-95f1-c2c383919a10" width="85%" alt="FundMeUp Home Page"/>
   <br/><br/>
-  <img src=<img width="1920" height="935" alt="image" src="https://github.com/user-attachments/assets/4e279e80-2333-4654-84ac-65af004ef8b1" /> alt="Student Scholarship Profile"/>
+  <img src="https://github.com/user-attachments/assets/4e279e80-2333-4654-84ac-65af004ef8b1" width="85%" alt="Student Scholarship Profile"/>
 </p>
-
 ---
 
 FundMeUp is a modern, user-friendly platform that reimagines how scholarships are funded.
@@ -76,7 +79,7 @@ FundMeUp reflects my passion for building digital products that:
 
 ## 📸 Here's a PPT to understand it better
 <p align="center">
-  <a href="[YOUR_CANVA_LINK_HERE](https://www.canva.com/design/DAG3KmU4-e4/PUzpvcIcgm4Lu9zw5zsC5Q/view?utm_content=DAG3KmU4-e4&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h1807563433)" target="_blank">
+  <a href="[https://www.canva.com/design/DAG3KmU4-e4/PUzpvcIcgm4Lu9zw5zsC5Q/view?utm_content=DAG3KmU4-e4&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h1807563433]" target="_blank">
     <b>📽️ View the FundMeUp Pitch Deck (Canva)</b>
   </a>
 </p>
