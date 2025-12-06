@@ -1,182 +1,92 @@
-# FundMeUp - Web3 Scholarship Platform
+<img width="1920" height="935" alt="image" src="https://github.com/user-attachments/assets/91c6a6c7-0634-486e-b390-a60c1f025f0e" /># FundMeUp 🎓💸  
+*A Web3-powered scholarship platform connecting students with global donors — fast, transparent, and borderless.*
 
-A decentralized scholarship platform built on blockchain technology, enabling transparent, AI-verified funding for students worldwide.
+<!-- Screenshots Section -->
+<p align="center">
+  <img src="<img width="1920" height="926" alt="image" src="https://github.com/user-attachments/assets/c3060e27-4da5-42bf-95f1-c2c383919a10" /> alt="FundMeUp Home Page"/>
+  <br/><br/>
+  <img src=<img width="1920" height="935" alt="image" src="https://github.com/user-attachments/assets/4e279e80-2333-4654-84ac-65af004ef8b1" /> alt="Student Scholarship Profile"/>
+</p>
 
-## Features
+---
 
-- 🎓 **Scholarship Management**: Students can create scholarship applications with milestones
-- 💰 **Transparent Donations**: Donors can fund scholarships with full transparency
-- ✅ **AI Verification**: Automated verification of student milestones and achievements
-- 🏆 **NFT Badges**: Earn NFT badges for donations and milestone completions
-- 📊 **Analytics Dashboard**: Track impact, donations, and student progress
-- 🔐 **Web3 Integration**: Built with Wagmi and RainbowKit for wallet connectivity
+FundMeUp is a modern, user-friendly platform that reimagines how scholarships are funded.
 
-## Tech Stack
+Instead of relying on banks or institutions, FundMeUp enables **direct donor-to-student support using crypto**, eliminating fees, delays, middlemen, and borders.  
+This project is built to showcase **frontend craftsmanship**, **product design**, and a **meaningful Web3 use case** for my portfolio.
 
-### Frontend
-- React + TypeScript
-- Vite
-- Tailwind CSS
-- Framer Motion
-- Wagmi + RainbowKit (Web3)
-- React Query
-- Supabase (Live Mode)
+---
+## Deployed in Vercel for demo purposes  
+👉 **https://fundmeup.vercel.app/**
 
-### Backend
-- Node.js + Express
-- Supabase (Database)
-- Ethers.js (Blockchain)
-- AI Services (Groq/Llama, Gemini)
+---
 
-## Getting Started
+## 🌍 The Idea  
+Education transforms lives — but access to scholarships is often restricted by geography, financial limitations, or bureaucracy.
 
-### Prerequisites
+FundMeUp makes global scholarship funding simple by allowing:
 
-- Node.js 18+ 
-- npm or yarn
-- Git
+- **Students** to apply for scholarships  
+- **Donors** to directly support verified students  
+- **Crypto-based transactions** that are fast, transparent, and borderless  
 
-### Installation
+**Goal:** Empower students worldwide with accessible education funding.
 
-1. Clone the repository:
-```bash
-git clone <your-repo-url>
-cd Prototype
-```
+---
 
-2. Install dependencies:
-```bash
-# Install root dependencies
-npm install
+## 🎯 What Users Can Do
 
-# Install backend dependencies
-cd backend
-npm install
+### 👨‍🎓 Students
+- Create scholarship applications  
+- Share their story and needs  
+- Receive funds instantly via crypto  
+- Track contributions  
 
-# Install frontend dependencies
-cd ../frontend
-npm install
-```
+### 💼 Donors
+- Browse student applications  
+- Support causes they care about  
+- Send funds with zero banking fees  
+- Know 100% of their contribution reaches the student  
 
-3. Set up environment variables:
+### 🔐 Why Crypto?  
+- No international transfer fees  
+- No institutional gatekeeping  
+- Faster & borderless  
+- Trustless & transparent  
 
-**Backend** (`backend/.env`):
-```env
-PORT=5000
-SUPABASE_URL=your-supabase-url
-SUPABASE_ANON_KEY=your-supabase-anon-key
-MONGODB_URI=your-mongodb-uri (optional)
-```
+---
 
-**Frontend** (`frontend/.env`):
-```env
-VITE_SUPABASE_URL=your-supabase-url
-VITE_SUPABASE_ANON_KEY=your-supabase-anon-key
-VITE_DEFAULT_MODE=demo
-VITE_API_URL=http://localhost:5000
-```
+## 🧩 Tech Stack 
+- **Next.js / React** – Frontend framework  
+- **TailwindCSS** – Styling  
+- **Web3 (concept / integration)** – Crypto-based funding  
+- **Vercel** – Deployment  
 
-4. Initialize Supabase database:
-   - Open Supabase Dashboard → SQL Editor
-   - Run `supabase/migrations/001_create_schema.sql`
-   - Run `supabase/migrations/002_add_demo_flag.sql`
+---
 
-5. Start the application:
-```bash
-# Windows
-START_APP.bat
+## 🎯 Why I Built This  
+FundMeUp reflects my passion for building digital products that:
 
-# Or manually:
-# Terminal 1 - Backend
-cd backend
-npm run dev
+- Solve real human problems  
+- Use modern technology with intention  
+- Deliver polished, intuitive user experiences  
+- Communicate ideas clearly to real users  
 
-# Terminal 2 - Frontend
-cd frontend
-npm run dev
-```
+---
 
-6. Open http://localhost:5173
+## 📸 Here's a PPT to understand it better
+<p align="center">
+  <a href="[YOUR_CANVA_LINK_HERE](https://www.canva.com/design/DAG3KmU4-e4/PUzpvcIcgm4Lu9zw5zsC5Q/view?utm_content=DAG3KmU4-e4&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h1807563433)" target="_blank">
+    <b>📽️ View the FundMeUp Pitch Deck (Canva)</b>
+  </a>
+</p>
 
-## Demo Mode vs Live Mode
 
-- **Demo Mode** (default): Uses simulated blockchain transactions and sample data. Perfect for testing and showcasing.
-- **Live Mode**: Connects to Supabase for real data. Requires wallet connection for transactions.
 
-Toggle modes using `Ctrl+Shift+D` or add `?dev=true` to URL.
 
-## Project Structure
 
-```
-Prototype/
-├── backend/          # Express.js API server
-│   ├── controllers/  # Route controllers
-│   ├── routes/       # API routes
-│   ├── models/       # Data models
-│   ├── services/     # Business logic
-│   └── scripts/      # Utility scripts
-├── frontend/         # React frontend
-│   └── src/
-│       ├── components/  # React components
-│       ├── pages/       # Page components
-│       ├── services/    # API services
-│       └── hooks/       # Custom hooks
-└── supabase/        # Database migrations
-    └── migrations/  # SQL migration files
-```
+## ⭐ Support the Project  
+If this project resonates with you, consider starring the repository:
 
-## Deployment
 
-### Vercel Deployment (Frontend)
-
-#### Via Vercel Dashboard:
-1. Push code to GitHub
-2. Go to [vercel.com](https://vercel.com) → New Project
-3. Import your GitHub repository
-4. Configure:
-   - **Framework**: Vite
-   - **Root Directory**: `frontend`
-   - **Build Command**: `npm run build`
-   - **Output Directory**: `dist`
-5. Add Environment Variables:
-   ```
-   VITE_SUPABASE_URL=your-supabase-url
-   VITE_SUPABASE_ANON_KEY=your-supabase-anon-key
-   VITE_DEFAULT_MODE=demo
-   VITE_API_URL=https://your-backend-url.com
-   ```
-6. Deploy!
-
-#### Via Vercel CLI:
-```bash
-npm i -g vercel
-cd frontend
-vercel
-```
-
-### Backend Deployment
-
-Deploy backend to Railway, Render, Heroku, or any Node.js hosting.
-
-**Required Environment Variables:**
-```
-PORT=5000
-SUPABASE_URL=your-supabase-url
-SUPABASE_ANON_KEY=your-supabase-anon-key
-NODE_ENV=production
-```
-
-**Important:** After backend deployment, update `VITE_API_URL` in Vercel to point to your backend URL.
-
-## Environment Variables
-
-See `backend/env.example.txt` and `frontend/env.template.txt` for required variables.
-
-## License
-
-MIT
-
-## Contributing
-
-Contributions welcome! Please open an issue or submit a pull request.
 
