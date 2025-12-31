@@ -1,6 +1,3 @@
-<p align="center">
-  <img width="316" height="101" alt="image" src="https://github.com/user-attachments/assets/5e94d944-4a2a-48ac-a17b-4e6e3cbdd8b5" alt="FundMeUp Banner"/>
-</p>
 <h1 align="center">FundMeUp 🎓💸</h1>
 <p align="center"><i>Web3-powered scholarships connecting students with global donors — fast, transparent, and borderless.</i></p>
 
