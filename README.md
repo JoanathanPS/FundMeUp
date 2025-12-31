@@ -79,10 +79,11 @@ FundMeUp reflects my passion for building digital products that:
 
 ## 📸 Here's a PPT to understand it better
 <p align="center">
-  <a href="[https://www.canva.com/design/DAG3KmU4-e4/PUzpvcIcgm4Lu9zw5zsC5Q/view?utm_content=DAG3KmU4-e4&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h1807563433]" target="_blank">
-    <b>📽️ View the FundMeUp Pitch Deck (Canva)</b>
+  <a href="https://www.canva.com/design/DAG3KmU4-e4/PUzpvcIcgm4Lu9zw5zsC5Q/view?utm_content=DAG3KmU4-e4&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h1807563433">
+    <strong>📽️ View the FundMeUp Pitch Deck (Canva)</strong>
   </a>
 </p>
+
 
 
 
