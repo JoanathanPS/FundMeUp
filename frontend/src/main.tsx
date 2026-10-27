@@ -7,6 +7,7 @@ import { RainbowKitProvider, getDefaultConfig, connectorsForWallets } from '@rai
 import { metaMaskWallet, walletConnectWallet, coinbaseWallet } from '@rainbow-me/rainbowkit/wallets'
 import { Toaster } from 'react-hot-toast'
 import { mainnet } from 'wagmi/chains'
+import { inject } from '@vercel/analytics'
 
 import App from './App'
 import ErrorBoundary from './components/ErrorBoundary'
@@ -15,6 +16,9 @@ import './index.css'
 
 // Import Wagmi and RainbowKit styles
 import '@rainbow-me/rainbowkit/styles.css'
+
+// Inject Vercel Web Analytics
+inject()
 
 // Remove loading fallback immediately
 const rootElement = document.getElementById('root')
