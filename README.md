@@ -17,7 +17,7 @@ This project is built to showcase **frontend craftsmanship**, **product design**
 
 ---
 ## Deployed in Vercel for demo purposes  
-👉 **https://fundmeup.vercel.app/**
+👉 **https://fundmeup.joanathan.in/**
 
 ---
 
